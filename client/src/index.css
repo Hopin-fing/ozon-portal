@@ -1,0 +1,78 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+
+.card-auth {
+    border: 1px solid #000000;
+}
+.link-nav {
+    margin-bottom: 50px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.journal__wrapper {
+    border: 2px solid #000000;
+    border-radius: 2px;
+    height: 500px;
+    padding: 2px 0;
+    overflow: auto
+}
+
+.journal__title {
+    border-bottom:  2px solid #000000;
+    padding:  0 5px 10px;
+    width: 100%;
+}
+
+.popup {
+    position: absolute;
+    height: 100vh;
+    width: 98vw;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.5);
+    cursor: pointer;
+}
+
+.active-input {
+    position: relative;
+    z-index: 1;
+    background-color: white !important;
+    border-radius: 10px !important;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tab-content {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}

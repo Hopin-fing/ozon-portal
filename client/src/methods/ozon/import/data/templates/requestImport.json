@@ -1,0 +1,201 @@
+{
+  "items": [
+    {
+      "attributes": [
+        {
+          "complex_id": 0,
+          "id": 85,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": "Maxima Optics"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 4180,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": ""
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 4191,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": "Контактные линзы Maxima 55 Comfort Plus - это линзы ежемесячной замены, имеющие асферический дизайн и изготовленные из биосовместимого материала. Эти контактные линзы разработаны специально для людей имеющих небольшую степень астигматизма, а также желающих ощущать чувство полного комфорта в течение целого дня.Асферическая поверхность контактной линзы помогает формировать более контрастное и четкое изображение. В Maxima 55 Comfort Plus все лучи, в том числе и проходящие через периферию, собираются вместе, тем самым минимизируя оптические искажения. Другим достоинством этих линз является материал из которого они изготовлены. Контактные линзы Maxima 55 Comfort Plus обладают низким уровнем образования отложений, превосходно удерживают воду и отлично пропускают кислород к роговице глаза. Все это стало возможно благодаря совершенно новому биосовместимому материалу, благодаря ему ношение контактных линз стало еще более удобным и комфортным.Замена через 1 месяц."
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 4194,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": ""
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 4384,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": "контактные линзы"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7694,
+          "values": [
+            {
+              "dictionary_value_id": 44632,
+              "value": "Ежемесячные"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7696,
+          "values": [
+            {
+              "dictionary_value_id": 43040,
+              "value": "Дневной"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7701,
+          "values": [
+            {
+              "dictionary_value_id": 81616,
+              "value": "-0.50"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7702,
+          "values": [
+            {
+              "dictionary_value_id": 81102,
+              "value": "8.6"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7703,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": "14"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7704,
+          "values": [
+            {
+              "dictionary_value_id": 45620,
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7706,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": "58"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 7709,
+          "values": [
+            {
+              "dictionary_value_id": 45574,
+              "value": "24"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 8205,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": "1095"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 8229,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": ""
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 9048,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": ""
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 9782,
+          "values": [
+            {
+              "dictionary_value_id": 970661099,
+              "value": "Не опасен"
+            }
+          ]
+        },
+        {
+          "complex_id": 0,
+          "id": 10289,
+          "values": [
+            {
+              "dictionary_value_id": 0,
+              "value": "maxima"
+            }
+          ]
+        }
+      ],
+      "barcode": "string",
+      "category_id": 17035115,
+      "depth": 20,
+      "dimension_unit": "mm",
+      "height": 60,
+      "images": [],
+      "name": "Контактные линзы Maxima Optics Maxima контактные линзы 55 Comfort Plus 6шт / 8.6 Ежемесячные, -0.50 / 14,2 / 8.6, 6 шт.",
+      "offer_id": "19342360",
+      "price": "1321",
+      "vat": "0",
+      "weight": 30,
+      "weight_unit": "g",
+      "width": 100
+    }
+  ]
+}

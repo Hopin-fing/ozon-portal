@@ -1,0 +1,111 @@
+[
+  {"flag" : "Maxima 55 Comfort Plus", "brand": "MaximaOptics", "line" : "Maxima", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Maxima/Maxima55ComPlus-Reg.pdf", "id": 17035115, "countryId": 90299, "idMaterial" : 81729, "features": "", "img" : "http://images.vfl.ru/ii/1619076159/b194471e/34175967.jpg"},
+  {"flag" : "Maxima 55 UV", "brand": "MaximaOptics", "line" : "Maxima", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Maxima/Maxima38,55UV-Reg.pdf", "id": 17035115, "countryId": 90299, "idMaterial" : 81713, "features": 39089, "img" : "http://images.vfl.ru/ii/1619076251/0074008c/34175979.jpg"},
+  {"flag" : "Soflens Natural Colors", "brand": "MaximaOptics", "line" : "", "series": "", "typeAttr" : 93515, "type" : "цветные", "typeColorLen" : 90294, "urlPdf": "http://viplinza.ru/images/cert/Bausch+Lomb/Optima-Reg.pdf", "id" : 17035114, "countryId": 90299, "idMaterial" : 81711, "features": "",  "img" : { "main": "http://images.vfl.ru/ii/1619433896/b66d9e08/34228480.jpg", "additional" : ["http://images.vfl.ru/ii/1619451518/aa32ecb3/34233352.jpg"]}},
+  {"flag" : "Optima FW", "brand": "MaximaOptics", "line" : "Optima FW", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Bausch+Lomb/Optima-Reg.pdf", "id": 17035115, "countryId": 90299, "idMaterial" : 81711, "features": "",  "img" : "http://images.vfl.ru/ii/1619434012/4358ba00/34228617.jpg"},
+  {"flag" : "BioTrue Oneday", "brand": "MaximaOptics", "line" : "Biotrue ONEday", "series": "", "typeAttr" : 93512, "type" : "однодневные", "urlPdf": "http://viplinza.ru/images/cert/Bausch+Lomb/BiotrueONEday-Reg.pdf", "id" : 17035118, "countryId": 90299, "idMaterial" : 81727, "features": "",  "img" : {"30": "http://images.vfl.ru/ii/1619506779/e50bee69/34238457.jpg", "90": "http://images.vfl.ru/ii/1619449527/ee20f5d0/34232997.jpg"}},
+  {"flag" : "Soflens 59", "brand": "MaximaOptics", "line" : "SofLens 59", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Bausch+Lomb/Soflens59-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 81704, "features": "", "img" : "http://images.vfl.ru/ii/1619434168/2562647f/34228716.jpg"},
+  {"flag" : "PureVision", "brand": "MaximaOptics", "line" : "PureVision", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Bausch+Lomb/PureVision-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 81725, "features": "",  "img" : "http://images.vfl.ru/ii/1619434236/7a2a1121/34228738.jpg"},
+  {"flag" : "ULTRA", "brand": "MaximaOptics", "line" : "Ultra", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Bausch+Lomb/ULTRA-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 970996841, "features": "",  "img" : "http://images.vfl.ru/ii/1619434348/de929bc2/34228767.jpg"},
+  {"flag" : "SofLens Daily Disposable", "brand": "MaximaOptics", "line" : "SofLens Daily Disposable", "series": "", "typeAttr" : 93512, "type" : "однодневные", "urlPdf": "http://viplinza.ru/images/cert/Bausch+Lomb/SoflensDaily-Reg.pdf",  "id": 17035118, "countryId": 90299, "idMaterial" : 81704, "features": "", "img" : {"30": "http://images.vfl.ru/ii/1619449319/e68ea6cd/34232936.jpg", "90": "http://images.vfl.ru/ii/1619434599/83ef295c/34228814.jpg"}},
+
+  {"flag" : "Alcon Dailies Aquacomfort Plus", "brand": "Alcon", "line" : "Dailies Aquacomfort Plus", "series": "", "typeAttr" : 93512, "type" : "однодневные", "urlPdf": "http://viplinza.ru/images/cert/Alcon/DailiesAquaComfort-Reg.pdf",  "id": 17035118, "countryId": 90299, "idMaterial" : 81714, "features": "", "img" : {"30": { "main": "http://images.vfl.ru/ii/1620915421/2c28b1de/34440720_m.jpg", "additional" : ["http://images.vfl.ru/ii/1620915421/335d9353/34440721_m.jpg", "http://images.vfl.ru/ii/1620915421/dcd115e2/34440722_m.jpg", "http://images.vfl.ru/ii/1620915421/9b3d3f14/34440723_m.jpg"]}, "90": { "main": "http://images.vfl.ru/ii/1620915707/67f70cea/34440802_m.jpg", "additional" : ["http://images.vfl.ru/ii/1620915707/8c2968be/34440803_m.jpg", "http://images.vfl.ru/ii/1620915707/53b935d6/34440804_m.jpg", "http://images.vfl.ru/ii/1620915707/576455a6/34440805_m.jpg"]}}},
+  {"flag" : "Air Optix plus HydraGlyde", "brand": "Alcon", "line" : "Air Optix plus HydraGlyde", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Alcon/AirOptixAqua,Hydraglyde,astig-Reg.pdf",  "id": 17035115, "countryId": 90299, "idMaterial" : 81717, "features": 39094, "img" : { "main": "http://images.vfl.ru/ii/1620916296/ab15c99b/34440986_m.jpg", "additional" : ["http://images.vfl.ru/ii/1620916296/36c696ef/34440987_m.jpg", "http://images.vfl.ru/ii/1620916297/21d3eb05/34440988_m.jpg"]}},
+  {"flag" : "Air Optix Night & Day", "brand": "Alcon", "line" : "Air Optix Night & Day Aqua", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Alcon/AirOptixNightDay-Reg.pdf",  "id": 17035115, "countryId": 90339, "idMaterial" : 81718, "features": "", "img" : { "main": "http://images.vfl.ru/ii/1620918065/4950a217/34441534_m.jpg", "additional" : ["http://images.vfl.ru/ii/1620918065/21f695f4/34441535_m.jpg", "http://images.vfl.ru/ii/1620918065/d3548502/34441536_m.jpg"]}},
+  {"flag" : "Dailies Total1", "brand": "Alcon", "line" : "Dailies Total 1", "series": "", "typeAttr" : 93512, "type" : "однодневные", "urlPdf": "http://viplinza.ru/images/cert/Alcon/Total1-Reg.pdf",  "id": 17035118, "countryId": 90299, "idMaterial" : 81728, "features":  234888290, "img" :
+  {"30": {
+    "main": "http://images.vfl.ru/ii/1627373795/c2e99144/35294188_m.jpg",
+    "additional" : ["http://images.vfl.ru/ii/1627373795/1c9c5b23/35294189_m.jpg", "http://images.vfl.ru/ii/1627373795/d0773cf8/35294190_m.png"]},
+    "90": {
+      "main": "http://images.vfl.ru/ii/1627374047/6046a62f/35294240_m.jpg",
+      "additional" : ["http://images.vfl.ru/ii/1627374047/b0389287/35294241_m.jpg", "http://images.vfl.ru/ii/1627374048/291f0e64/35294242_m.png"]}}},
+  {"flag" : "Alcon Air Optix Aqua", "brand": "Alcon", "line" : "Air Optix Aqua", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Alcon/AirOptixAqua,Hydraglyde,astig-Reg.pdf",  "id": 17035115, "countryId": 90299, "idMaterial" : 81717, "features": 39094, "img" : { "main": "http://images.vfl.ru/ii/1620918594/d0ba9e6f/34441607_m.jpg", "additional" : ["http://images.vfl.ru/ii/1620918595/b7cd2f49/34441608_m.jpg", "http://images.vfl.ru/ii/1620918595/81916e4b/34441609_m.jpg"]}},
+  {"flag" : "Air Optix Colors", "brand": "Alcon", "line" : "Air Optix Colors", "series": "", "typeAttr" : 93515, "type" : "цветные", "typeColorLen" : 90294, "urlPdf": "http://viplinza.ru/images/cert/Alcon/AirOptixColors-Reg.pdf", "id" : 17035114, "countryId": 90299, "idMaterial" : 81717, "features": 234888291,
+    "img" : {"main": "http://images.vfl.ru/ii/1620976405/745d188d/34447620_m.jpg", "additional" : {
+      "allColors" : ["http://images.vfl.ru/ii/1620979052/569522d6/34448456_m.jpg"],
+      "фиолетовый" : ["http://images.vfl.ru/ii/1620979279/f29bda8c/34448527_m.jpg"],
+      "голубой" : ["http://images.vfl.ru/ii/1620979280/558da971/34448528_m.jpg", "http://images.vfl.ru/ii/1620979052/29a99a4e/34448457_m.jpg"],
+      "темно-коричневый" : ["http://images.vfl.ru/ii/1625652316/a4ca2928/35078338_m.jpg", "http://images.vfl.ru/ii/1620979052/2d991aef/34448458_m.jpg"],
+      "зеленый" : ["http://images.vfl.ru/ii/1620979280/8392bc2c/34448530_m.jpg", "http://images.vfl.ru/ii/1620979053/7659605a/34448460_m.jpg"],
+      "темно-зеленый" : ["http://images.vfl.ru/ii/1620979281/2379efef/34448535_m.jpg"],
+      "медь" : ["http://images.vfl.ru/ii/1620979280/af453762/34448531_m.jpg"],
+      "темно-синий" : ["http://images.vfl.ru/ii/1620979280/de7cbffa/34448532_m.jpg"],
+      "бирюзовый" : ["http://images.vfl.ru/ii/1620979280/4ad7cda2/34448533_m.jpg"],
+      "синий" : ["http://images.vfl.ru/ii/1620979280/250afad3/34448534_m.jpg"],
+      "серый" : [ "http://images.vfl.ru/ii/1620979052/f2e4037d/34448459_m.jpg"],
+      "серебристый" : ["http://images.vfl.ru/ii/1620979281/685d3b0d/34448536_m.jpg"]
+  }}},
+  {"flag" : "Freshlook Colors", "brand": "Alcon", "line" : "FreshLook", "series": "", "typeAttr" : 93515, "type" : "цветные", "typeColorLen" : 90294, "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Freshlook_All-Reg.pdf", "id" : 17035114, "countryId": [90299, 90337], "idMaterial" : 81706, "features": 234888291,
+    "img" : {"main": "http://images.vfl.ru/ii/1620990617/94f0168a/34451774_m.jpg", "additional" : {
+      "голубой" : ["http://images.vfl.ru/ii/1620990777/12cc73df/34451820_m.jpg"],
+      "зеленый" : ["http://images.vfl.ru/ii/1620990777/588eabb5/34451821_m.jpg"],
+      "коричнево-красный" : ["http://images.vfl.ru/ii/1620990777/633fe6d0/34451822_m.jpg"],
+      "серый" : ["http://images.vfl.ru/ii/1620990777/3f75e899/34451823_m.jpg"],
+      "темно-синий" : ["http://images.vfl.ru/ii/1620990778/2c997066/34451824_m.jpg"],
+      "фиолетовый" : ["http://images.vfl.ru/ii/1620990778/7127a5c7/34451825_m.jpg"]
+    }}},
+  {"flag" : "Freshlook ColorBlends", "brand": "Alcon", "line" : "FreshLook", "series": "", "typeAttr" : 93515, "type" : "цветные", "typeColorLen" : 90294, "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Freshlook_All-Reg.pdf", "id" : 17035114, "countryId": [90299, 90337], "idMaterial" : 81706, "features": [234888291, 39094],
+    "img" : {"main": "http://images.vfl.ru/ii/1620991972/a963b210/34452147_m.jpg", "additional" : {
+      "темно-зеленый" : ["http://images.vfl.ru/ii/1620992253/b8cddefd/34452263_m.jpg"],
+      "синий" : ["http://images.vfl.ru/ii/1620992253/cb5f9ea0/34452264_m.jpg"],
+      "серебристый" : ["http://images.vfl.ru/ii/1620992253/4c86729b/34452265_m.jpg"],
+      "темно-коричневый" : ["http://images.vfl.ru/ii/1620992253/eab694d9/34452266_m.jpg"],
+      "серый" : ["http://images.vfl.ru/ii/1620992253/0daa59b0/34452267_m.jpg"],
+      "медь" : ["http://images.vfl.ru/ii/1620992253/addf073f/34452268_m.jpg"],
+      "фиолетовый" : ["http://images.vfl.ru/ii/1620992254/707ab63a/34452269_m.jpg"],
+      "коричнево-красный" : ["http://images.vfl.ru/ii/1620992254/4c9cc4bf/34452270_m.jpg"],
+      "зеленый" : ["http://images.vfl.ru/ii/1620992254/6a854d78/34452271_m.jpg"],
+      "темно-синий" : ["http://images.vfl.ru/ii/1620992254/6e1cf91d/34452272_m.jpg"],
+      "бирюзовый" : ["http://images.vfl.ru/ii/1620992254/d256d829/34452273_m.jpg"],
+      "голубой" : ["http://images.vfl.ru/ii/1620992254/5a5fce5f/34452274_m.jpg"]
+  }}},
+  {"flag" : "Freshlook Dimensions", "brand": "Alcon", "line" : "FreshLook", "series": "", "typeAttr" : 93515, "type" : "цветные", "typeColorLen" : 90293, "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Freshlook_All-Reg.pdf", "id" : 17035114, "countryId": [90299, 90337], "idMaterial" : 81706, "features": [234888291, 39094],
+    "img" : {"main": "http://images.vfl.ru/ii/1620991972/a963b210/34452147_m.jpg", "additional" : {
+      "бирюзовый" : ["http://images.vfl.ru/ii/1620994238/2d213c29/34452715_m.jpg"],
+      "голубой" : ["http://images.vfl.ru/ii/1620994238/03e7a2c0/34452716_m.jpg"],
+      "зеленый" : ["http://images.vfl.ru/ii/1620994238/c95e5023/34452717_m.jpg"]
+    }}},
+  {"flag" : "Air Optix Hydraglyde Multifocal", "brand": "Alcon", "line" : "Air Optix Plus HydraGlyde Multifocal", "series": "", "typeAttr" : 34255927, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Alcon/AirOptixAqua,Hydraglyde,Mult-Reg.pdf", "id" : 17035115, "countryId": 90339, "idMaterial" : 81717, "features": [234888291, 234888290], "img" : { "main": "http://images.vfl.ru/ii/1620915155/20f4cdfc/34440634_m.jpg", "additional" : ["http://images.vfl.ru/ii/1620915155/a405e2fd/34440635_m.jpg", "http://images.vfl.ru/ii/1620915156/c9f997ad/34440636_m.jpg"]}},
+  {"flag" : "Air Optix Astigmatism HydraGlyde", "brand": "Alcon", "line" : "Air Optix Plus HydraGlyde", "series": "", "typeAttr" : 97484, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Alcon/AirOptixAqua,Hydraglyde,astig-Reg.pdf", "id" : 17035115, "countryId": 90339, "idMaterial" : 81717, "features": [234888291, 234888290], "img" : { "main": "http://images.vfl.ru/ii/1625575767/7a97fba1/35067861_m.jpg", "additional" : ["http://images.vfl.ru/ii/1620914416/17eaf21f/34440138_m.jpg", "http://images.vfl.ru/ii/1625575767/21146d51/35067862_m.jpg"]}},
+  {"flag" : "Acuvue Oasys 6 for Astigmatism", "brand": "Alcon", "line" : "Acuvue Oasys with Hydraluxe", "series": "", "typeAttr" : 97484, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/Johnson&Johnson/AcuvueOasysforAstig-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 81703, "features":39089, "img" : { "main": "http://images.vfl.ru/ii/1622034144/0a0f2596/34593014_m.jpg", "additional" : ["http://images.vfl.ru/ii/1622034144/c91e2c47/34593015_m.jpg"]}},
+
+
+
+    {"flag" : "Biofinity XR", "brand": "CooperVision", "line" : "Biofinity", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Myday,BiofinityXR,mult,Proclear,Biom55-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 234968430, "features":[234888291, 39094],
+    "img" : { "main": "http://images.vfl.ru/ii/1625300375/7fd26687/35034998_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625300375/29b5ce77/35034999_m.jpg"]}},
+
+  {"flag" : "Biofinity multifocal", "brand": "CooperVision", "line" : "Biofinity", "series": "", "typeAttr" : 34255927, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Myday,BiofinityXR,mult,Proclear,Biom55-Reg.pdf", "id" : 17035115, "countryId": 90302, "idMaterial" : 234968430, "features":234888291, "img" : { "main": "http://images.vfl.ru/ii/1625563045/219227b5/35065229_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625563045/4dd4bfdb/35065230_m.jpg"]}},
+  {"flag" : "Biofinity toric", "brand": "CooperVision", "line" : "Biofinity", "series": "", "typeAttr" : 97484, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/BiofinityToric-Reg.pdf", "id" : 17035115, "countryId": 90302, "idMaterial" : 234968430, "features": 234888291, "img" : { "main": "http://images.vfl.ru/ii/1625562628/dd907707/35065127_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625562629/ec3125a0/35065128_m.jpg", "http://images.vfl.ru/ii/1625562629/2bf53587/35065129_m.jpg"]}},
+  {"flag" : "Biofinity", "brand": "CooperVision",  "line" : "Biofinity", "series": "", "typeAttr" : 97484, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Biofinity-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 234968430, "features":[234888291, 39094],
+    "img" : {
+      "3": { "main": "http://images.vfl.ru/ii/1625244893/6dab65b2/35031498_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625244893/35b91b40/35031499_m.jpg"]},
+      "6": { "main": "http://images.vfl.ru/ii/1625244959/fe371f72/35031503_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625244960/f2524080/35031504_m.jpg", "http://images.vfl.ru/ii/1625300340/358daf49/35034995_m.jpg"]}
+    }},
+
+  {"flag" : "Biomedics 55 Evolution UV", "brand": "CooperVision", "line" : "Biomedics", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Biomedics-All-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 81713, "features":[234888291, 39089],
+    "img" : { "main": "http://images.vfl.ru/ii/1625741265/856f8736/35090717_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625741265/57874134/35090719_m.jpg", "http://images.vfl.ru/ii/1625741265/ea99797d/35090720_m.jpg"]}},
+
+
+  {"flag" : "Avaira Vitality Toric", "brand": "CooperVision", "line" : "AVAIRA", "series": "", "typeAttr" : 97484, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Avaira_Vitality_toric-Reg.pdf", "id" : 17035115, "countryId": 90302, "idMaterial" : 81730, "features":39094,
+    "img" : { "main": "http://images.vfl.ru/ii/1625741020/cdbb2784/35090667_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625741021/c9836a7c/35090668_m.jpg"]}},
+
+  {"flag" : "Avaira Vitality", "brand": "CooperVision", "line" : "AVAIRA", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Avaira_Vitality_toric-Reg.pdf", "id" : 17035115, "countryId": 90302, "idMaterial" : 81730, "features":39094,
+    "img" : { "main": "http://images.vfl.ru/ii/1625244752/b58b11f2/35031474_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625244752/6e2378e8/35031475_m.jpg"]}},
+
+  {"flag" : "Clariti 1 day multifocal", "brand": "CooperVision", "line" : "", "series": "", "typeAttr" : 34255927, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Clariti_1Day-Reg.pdf", "id" : 17035118, "countryId": 90302, "idMaterial" : 970996841, "features":[39094,39089], "img" : { "main": "http://images.vfl.ru/ii/1625562975/14bdbca3/35065206_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625562975/c3bcf151/35065207_m.jpg"]}},
+  {"flag" : "Clariti 1 day toric", "brand": "CooperVision", "line" : "", "series": "", "typeAttr" : 97484, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Clariti_1Day-Reg.pdf", "id" : 17035118, "countryId": 90302, "idMaterial" : 970996841, "features": [39089, 39094], "img" : { "main": "http://images.vfl.ru/ii/1626769694/c5150cca/35216374_m.jpg", "additional" : ["http://images.vfl.ru/ii/1626769695/220ccf23/35216375_m.jpg"]}},
+
+  {"flag" : "Clariti 1-day", "brand": "CooperVision", "line" : "", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "https://viplinza.ru/images/cert/CooperVision/Clariti_1Day-Reg.pdf", "id" : 17035118, "countryId": 90299, "idMaterial" : 970996841, "features":[39089, 234888290],
+    "img" : { "main": "http://images.vfl.ru/ii/1626769398/0a36c0eb/35216279_m.jpg", "additional" : ["http://images.vfl.ru/ii/1626769400/eadf7566/35216281_m.jpg"]}},
+  {"flag" : "Clariti Elite", "brand": "CooperVision", "line" : "", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Clariti_all-Reg.pdf", "id" : 17035115, "countryId": 90299, "idMaterial" : 970996841, "features": 39089,
+    "img" : { "main": "http://images.vfl.ru/ii/1625300655/d3cea15b/35035029_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625300656/16a111ed/35035030_m.jpg"]}},
+  {"flag" : "Myday", "brand": "CooperVision", "line" : "", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Myday,BiofinityXR,mult,Proclear,Biom55-Reg.pdf", "id" : 17035118, "countryId": 90299, "idMaterial" : 81709, "features":[39089, 234888290, 39090],
+    "img" : { "main": "http://images.vfl.ru/ii/1626769826/effda581/35216404_m.jpg", "additional" : ["http://images.vfl.ru/ii/1626769826/eede3951/35216405_m.jpg", "http://images.vfl.ru/ii/1626769826/7980db73/35216406_m.jpg"]}},
+  {"flag" : "Proclear 1 day", "brand": "CooperVision", "line" : "Proclear", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "http://viplinza.ru/images/cert/CooperVision/Proclear_all_Reg.pdf", "id" : 17035118, "countryId": 90299, "idMaterial" : 81712, "features":[234888290, 39094],
+    "img" : { "main": "http://images.vfl.ru/ii/1625300842/d28f5e52/35035045_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625300842/b384d7eb/35035046_m.jpg"]}},
+  {"flag" : "Proclear", "brand": "CooperVision", "line" : "Proclear", "series": "", "typeAttr" : 93512, "type" : "прозрачные", "urlPdf": "https://viplinza.ru/images/cert/CooperVision/Proclear_all_Reg.pdf", "id" : 17035118, "countryId": 90299, "idMaterial" : 81712, "features":234888291,
+    "img" : { "main": "http://images.vfl.ru/ii/1625300769/cf5e247b/35035037_m.jpg", "additional" : ["http://images.vfl.ru/ii/1625300769/e2ac4602/35035038_m.jpg"]}},
+
+  {"flag" :  "NeoCosmo", "brand": "Neo Cosmo"}
+
+]
