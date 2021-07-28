@@ -12,7 +12,10 @@ import {
 } from "../redux/actions/products";
 import {useHttp} from "../hooks/http.hook";
 import moment from "moment";
+import cabinetsInfo from "../methods/clientData";
 
+
+const REACT_APP_WAREHOUSE_ID_MANEJ22 = process.env.REACT_APP_WAREHOUSE_ID_MANEJ22;
 // const REACT_APP_WAREHOUSE_ID_MANEJ22 = process.env.REACT_APP_WAREHOUSE_ID_MANEJ22;
 const REACT_APP_WAREHOUSE_ID_NEO_SPB = process.env.REACT_APP_WAREHOUSE_ID_NEO_SPB;
 
@@ -66,11 +69,12 @@ const CommandPanel = () => {
                     const productId = item["id"]
                     const stock = item["balance"]
                     const stockOzon = item["stocks"]["present"]
+                    const cabinet = item["cabinet"]
                     const result = {
                         "product_id": productId,
                         "offer_id": offerId,
                         "stock": stock,
-                        "warehouse_id": REACT_APP_WAREHOUSE_ID_NEO_SPB
+                        "warehouse_id": cabinetsInfo[cabinet]["warehouse"]
                     }
                     if(stock !== stockOzon) arrStocks.push(result)
                 }
@@ -293,8 +297,8 @@ const CommandPanel = () => {
                     <button
                         className="green waves-effect waves-light btn darken-3"
                         onClick={handlerImportRequest}
-                        // disabled={isLoading}
-                        disabled={true}
+                        disabled={isLoading}
+                        // disabled={true}
 
                     >Импортировать товары</button>
 

@@ -10,15 +10,9 @@ import {AuthPage} from "./pages/AuthPage";
 export const useRoutes = isAuthenticated => {
     if(isAuthenticated) return (
         <Switch>
-            <Route path="/home" exact>
-                <Home/>
-            </Route>
-            <Route path="/list/:name">
-                <List/>
-            </Route>
-            <Route path="/product/:name">
-                <Product/>
-            </Route>
+            <Route path="/home" exact  component={Home}/>
+            <Route path="/list/:name" component={List}/>
+            <Route path="/product/:name" component={Product}/>
             <Redirect to="/home"/>
         </Switch>
     )

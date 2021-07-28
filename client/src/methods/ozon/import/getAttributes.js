@@ -279,8 +279,7 @@ const GetAttributes = (indexItem, sourceData) => {
         if(barcode.length === 0) isEmpty = true
 
         const article = isEmpty
-                ? null :  brand !== "Neo Cosmo"
-                ? "100" + cleaningBarcode(barcode) : cleaningBarcode(barcode);
+                ? null : "100" + cleaningBarcode(barcode);
         barcode = brand !== "Neo Cosmo" ? "LINZA" +  createNewBarcode(barcode) : barcode
 
 
@@ -354,13 +353,15 @@ const GetAttributes = (indexItem, sourceData) => {
             const daysReplace  = doOzonFormat("Режим замены", searchAttr( "Режим замены"));
             const packWeight  = searchAttr( 'Вес товара с упаковкой (г)', 0, "count");
             const moistureCont  = searchAttr( 'Влагосодержание', 0, "count").toString();
-            let modelProduct = `Контактные линзы ${brand} ${name} ${radCurvature} /`
+            let modelProduct = `Контактные линзы ${brand} ${name} /`
 
             const images  = searchValue(flagGroup,"flag", "img", brand, packAmount);
 
             name +=  `, ${optPwr}/ ${radCurvature}/` // Дополнительная информация к названию
 
-            modelProduct =  isSpecModel ?`Контактные линзы ${brand} ${radCurvature} /` : modelProduct
+            console.log("brand", brand)
+
+            modelProduct =  isSpecModel ?`Контактные линзы ` : modelProduct
 
             let attrWitchName = name.replace(/\//g , "," )
             const line = searchValue(flagGroup,"flag", "line", brand);
@@ -424,7 +425,6 @@ const GetAttributes = (indexItem, sourceData) => {
                 const addition = searchAddition(nameOriginal)
                 objRequest.idAddition = addition.id
                 objRequest.name += ` ${addition.value}/`
-                objRequest.modelProduct +=  ` ${addition.value}`
                 objRequest.attrWitchName +=  objRequest.name.replace(/\//g , ",")
 
             }
@@ -453,13 +453,11 @@ const GetAttributes = (indexItem, sourceData) => {
                 const addAttrInfo = (attr, value, string) => {
                     objRequest[attr] = value
                     objRequest.name += ` ${string}:${value}/`
-                    objRequest.flagGroup += ` ${string}:${value}/`
+                    // objRequest.flagGroup += ` ${string}:${value}/`
                 }
 
                 if(lensesAx !== null && lensesCYL !== null) {
                     objRequest.name += ` AX:${lensesAx}/ CYL:${lensesCYL} `
-                    objRequest.flagGroup += ` AX:${lensesAx}/ CYL:${lensesCYL} `
-                    objRequest.modelProduct += ` AX:${lensesAx}/ CYL:${lensesCYL} `
                     objRequest.attrWitchName +=  objRequest.name.replace(/\//g , ",")
                 }
 
@@ -470,7 +468,6 @@ const GetAttributes = (indexItem, sourceData) => {
                         .replace(/( CYL:\S*\s+\D*)/g, "")
                         .replace(/ \/\D*/g, "")
                     addAttrInfo("lensesAx", lensesAx, "AX")
-                    objRequest.modelProduct += ` AX:${lensesAx}/`
                     objRequest.attrWitchName +=  objRequest.modelProduct.replace(/\//g , ",")
                 }
 
@@ -481,7 +478,6 @@ const GetAttributes = (indexItem, sourceData) => {
                         .replace(/ CYL:/g, "")
                         .replace(/,/g, "")
                     addAttrInfo("lensesCYL", lensesCYL, "CYL")
-                    objRequest.modelProduct += ` CYL:${lensesCYL} `
                     objRequest.attrWitchName +=  objRequest.modelProduct.replace(/\//g , ",")
                 }
                 if( objRequest.lensesAx === null && objRequest.lensesCYL === null) {
@@ -496,7 +492,6 @@ const GetAttributes = (indexItem, sourceData) => {
                         .replace(/ CYL:/g, "")
                         .replace(/,/g, "")
                     addAttrInfo("lensesCYL", lensesCYL, "CYL")
-                    objRequest.modelProduct += ` AX:${lensesAx}/ CYL:${lensesCYL} `
                     objRequest.attrWitchName +=  objRequest.modelProduct.replace(/\//g , ",")
                 }
 

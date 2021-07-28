@@ -5,6 +5,7 @@ import LinkHome from "../components/LinkHome";
 import TableRow from "../components/TableRow";
 
 const List = ({match}) => {
+    console.log("match", match)
     const urlName = match.params.name
     const dispatch = useDispatch();
     dispatch(getListModel(urlName))

@@ -55,6 +55,7 @@ const addProductInfo = (allItems, productTree, data , state, arrPrices) => {
                         checkingObj["price"] = currentPrice
                         let commission = Math.ceil(20 + 45 + currentPrice/100*5 + currentPrice/100*4.4 + (currentPrice-purchasePrice)/100*3)
                         checkingObj["balance"] = Number(addAtrDB(checkingObj)["balance"])
+                        checkingObj["cabinet"] = nameCabinet
                         checkingObj["income"] = checkingObj["price"] - checkingObj["purchasePrice"] - commission
                         checkingObj["minPrice"] = checkingObj["purchasePrice"] + commission + overPrice
                         if(addAtrDB(checkingObj)["oldPrice"] !== null ) {

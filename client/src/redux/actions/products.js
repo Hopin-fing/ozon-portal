@@ -3,8 +3,8 @@ import cabinetsInfo from "../../methods/clientData";
 
 
 const headers = {
-    "Client-Id": cabinetsInfo.My_Alcon.id,
-    "Api-Key" : cabinetsInfo.My_Alcon.apiKey,
+    "Client-Id": cabinetsInfo.NeoVishen.id,
+    "Api-Key" : cabinetsInfo.NeoVishen.apiKey,
     "Content-Type":"application/json",
     "Retry-After": 2000
 }
