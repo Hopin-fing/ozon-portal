@@ -56,6 +56,8 @@ export const importStocks = bodyRequest => async () => {
     const url = "https://api-seller.ozon.ru/v2/products/stocks"
     let arrResponseData = {"stocks" :[]}
 
+    console.log("importStocks")
+
     for(const [index, element] of bodyRequest.entries()) {
         try{
         if(index % 99 === 0 && index !== 0) {
