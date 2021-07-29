@@ -1,21 +1,23 @@
 const express = require('express')
 const config = require('config')
-const path = require('path')
 const mongoose = require('mongoose')
 const cors = require('cors');
 
 const app = express()
 
-
-
+const corsOptions = {
+    credentials: true,
+    origin: 'http://localhost:80',  // сменил на http://<имя моего домена>
+    allowedHeaders: ['Content-Type'],
+    optionsSuccessStatus: 200
+};
 
 app.use(express.json({extended: true}))
 app.use('/api/price', require('./routes/price.routes'))
 app.use('/api/product', require('./routes/products.routes'))
 app.use('/api/auth', require('./routes/auth.routes'))
-app.use(cors())
 
-app.options("*", cors())
+
 
 const PORT = config.get('port') || 5000
 
@@ -29,7 +31,7 @@ if(process.env.NODE_ENV === "production") {
 
 async function start() {
     try {
-        await mongoose.connect(config.get('mongoUri'), {
+        await mongoose.connect(config.get('mongoUri'), cors(corsOptions),{
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
