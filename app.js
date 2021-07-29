@@ -8,7 +8,7 @@ const app = express()
 
 const corsOptions = {
     credentials: true,
-    origin: ' http://84.38.180.73',
+    origin: ' http://84.38.180.73/home',
     allowedHeaders: ['Content-Type'],
     optionsSuccessStatus: 200
 };
