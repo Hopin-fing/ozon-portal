@@ -2,13 +2,20 @@ const express = require('express')
 const config = require('config')
 const path = require('path')
 const mongoose = require('mongoose')
+const cors = require('cors');
 
 const app = express()
+
+
+
 
 app.use(express.json({extended: true}))
 app.use('/api/price', require('./routes/price.routes'))
 app.use('/api/product', require('./routes/products.routes'))
 app.use('/api/auth', require('./routes/auth.routes'))
+app.use(cors())
+
+app.options("*", cors())
 
 const PORT = config.get('port') || 5000
 
