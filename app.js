@@ -1,6 +1,7 @@
 const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
+const path = require('path')
 const cors = require('cors');
 
 const app = express()
