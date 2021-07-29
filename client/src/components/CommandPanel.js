@@ -14,11 +14,6 @@ import {useHttp} from "../hooks/http.hook";
 import moment from "moment";
 import cabinetsInfo from "../methods/clientData";
 
-
-const REACT_APP_WAREHOUSE_ID_MANEJ22 = process.env.REACT_APP_WAREHOUSE_ID_MANEJ22;
-// const REACT_APP_WAREHOUSE_ID_MANEJ22 = process.env.REACT_APP_WAREHOUSE_ID_MANEJ22;
-const REACT_APP_WAREHOUSE_ID_NEO_SPB = process.env.REACT_APP_WAREHOUSE_ID_NEO_SPB;
-
 // const data = require("../data/responseData/sourcePrices.json")
 
 const CommandPanel = () => {
@@ -93,6 +88,7 @@ const CommandPanel = () => {
     const onOpenTables = async () => {
         dispatch(openTables())
         try {
+            console.log("test")
             const dataSourcePrice = await request("/api/price/get_sourcePrice")
             console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
