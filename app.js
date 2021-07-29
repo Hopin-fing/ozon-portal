@@ -7,7 +7,7 @@ const app = express()
 
 const corsOptions = {
     credentials: true,
-    origin: ' http://84.38.180.73',  // сменил на http://<имя моего домена>
+    origin: ' http://84.38.180.73',
     allowedHeaders: ['Content-Type'],
     optionsSuccessStatus: 200
 };
@@ -16,6 +16,7 @@ app.use(express.json({extended: true}))
 app.use('/api/price', require('./routes/price.routes'))
 app.use('/api/product', require('./routes/products.routes'))
 app.use('/api/auth', require('./routes/auth.routes'))
+app.use(cors(corsOptions));
 
 
 
@@ -31,7 +32,7 @@ if(process.env.NODE_ENV === "production") {
 
 async function start() {
     try {
-        await mongoose.connect(config.get('mongoUri'), cors(corsOptions),{
+        await mongoose.connect(config.get('mongoUri'), {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
