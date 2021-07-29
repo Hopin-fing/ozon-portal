@@ -10,8 +10,7 @@
     "client": "yarn --cwd client start",
     "client:install": "yarn --cwd client install",
     "client:build": "yarn --cwd client build",
-    "dev": "yarn env",
-    "env": " cross-env NODE_ENV=development concurrently \" yarn server\" \" yarn client \"",
+    "dev": " cross-env NODE_ENV=development concurrently \" yarn server\" \" yarn client \"",
     "converter": "cd serverMethods/converterJson && node converterPricesDb",
     "getdbinfo": "cd serverMethods/getDB && node index",
     "getneocosmo": "node app.js && cd serverMethods/createSrcCard node index"

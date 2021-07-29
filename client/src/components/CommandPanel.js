@@ -93,9 +93,9 @@ const CommandPanel = () => {
     const onOpenTables = async () => {
         dispatch(openTables())
         try {
-            const dataSourcePrice = await request("/api/price/get_sourcePrice")
+            const dataSourcePrice = await request("/api/price/get_sourcePrice:5000")
             // console.log(".docs", dataSourcePrice.docs)
-            const dataPrices = await request("/api/price/get_price")
+            const dataPrices = await request("/api/price/get_price:5000")
             console.log("dataPrices", dataPrices)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
