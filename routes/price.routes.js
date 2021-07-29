@@ -5,6 +5,7 @@ const router = Router()
 
 
 router.get('/get_sourcePrice', async (req, res) => {
+        console.log("/get_sourcePrice catch")
     try{
 
         const docs = await createFullCardsWB()
