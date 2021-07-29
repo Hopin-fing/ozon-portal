@@ -30,8 +30,6 @@ const CommandPanel = () => {
     const {request} = useHttp()
 
 
-    // TODO: СДЕЛАТЬ ОТПРАВКУ НА СЕРВАК ТАКЖЕ КАК И В КРОНЕ
-
     let requestJourney = []
     let reqLog = []
 
