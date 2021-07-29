@@ -6,7 +6,7 @@ const headers = {
     "Client-Id": cabinetsInfo.NeoVishen.id,
     "Api-Key" : cabinetsInfo.NeoVishen.apiKey,
     "Content-Type":"application/json",
-    "Retry-After": 2000
+    "Retry-After": 4000
 }
 
 
