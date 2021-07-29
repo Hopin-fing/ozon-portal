@@ -86,6 +86,7 @@ const CommandPanel = () => {
     const existProductTree = Object.keys(productTree).length
 
     const onOpenTables = async () => {
+        console.log("test")
         dispatch(openTables())
         try {
             console.log("test")
