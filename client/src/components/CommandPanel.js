@@ -66,9 +66,11 @@ const CommandPanel = () => {
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *client
+            body: {}
         })
-        console.log(response)
-        return await response.json()
+        return await response.then((data) => {
+            console.log(data); // JSON data parsed by `response.json()` call
+        });
     }
     useEffect(() => {
         if(allItems.length !== 0 ) {
