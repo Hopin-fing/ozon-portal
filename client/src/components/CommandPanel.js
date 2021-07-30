@@ -88,7 +88,20 @@ const CommandPanel = () => {
         dispatch(openTables())
         try {
             console.log("test")
-            const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataSourcePrice = await fetch("http://84.38.180.73:5000/api/price/get_sourcePrice", {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                mode: 'no-cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *client
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            })
+            // const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("dataSourcePrice", dataSourcePrice)
             console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
