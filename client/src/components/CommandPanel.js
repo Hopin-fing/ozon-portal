@@ -67,6 +67,7 @@ const CommandPanel = () => {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *client
         })
+        console.log(response)
         return await response.json()
     }
     useEffect(() => {
