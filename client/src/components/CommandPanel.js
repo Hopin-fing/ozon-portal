@@ -291,17 +291,6 @@ const CommandPanel = () => {
                 </div>
                 <div className="card-action center">
                     <button
-                        className="green waves-effect waves-light btn darken-3"
-                        onClick={handlerImportRequest}
-                        disabled={isLoading}
-                        // disabled={true}
-
-                    >Импортировать товары</button>
-
-
-                </div>
-                <div className="card-action center">
-                    <button
                         className="yellow waves-effect waves-light btn darken-3"
                         onClick={handlerSendPrices}
                         disabled={!existProductTree || isLoading}
@@ -310,15 +299,6 @@ const CommandPanel = () => {
 
                 </div>
 
-                <div className="card-action center">
-                    <button
-                        className="purple waves-effect waves-light btn darken-3"
-                        onClick={handlerTestRequest}
-                        disabled={isLoading}
-
-                    >Тестовый запрос</button>
-
-                </div>
             </div>
 
             <div className="card">
