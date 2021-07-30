@@ -88,10 +88,10 @@ const CommandPanel = () => {
         dispatch(openTables())
         try {
             console.log("test")
-            const dataSourcePrice = await request("/api/price/get_sourcePrice")
+            const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
-            const dataPrices = await request("/api/price/get_price")
+            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_price")
             console.log("dataPrices", dataPrices)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
@@ -147,8 +147,8 @@ const CommandPanel = () => {
 
         dispatch(openTables())
         try {
-            const dataSourcePrice = await request("/api/price/get_sourcePrice")
-            const dataPrices = await request("/api/price/get_price")
+            const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_price")
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
             dispatch(endLoading(dataSourcePrice))
