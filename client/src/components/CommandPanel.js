@@ -89,6 +89,7 @@ const CommandPanel = () => {
         try {
             console.log("test")
             const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            console.log("dataSourcePrice", dataSourcePrice)
             console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
             const dataPrices = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
