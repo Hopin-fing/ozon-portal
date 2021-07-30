@@ -5,11 +5,9 @@ const router = Router()
 
 
 router.get('/get_sourcePrice', async (req, res) => {
-    console.log("/get_sourcePrice catch")
     try{
 
         const docs = await createFullCardsWB()
-        console.log("docs", docs)
         return res.status(200).json({docs})
     }catch (e) {
         res.status(500).json({ message: ' Some error, try again'})
