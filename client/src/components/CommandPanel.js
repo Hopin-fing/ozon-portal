@@ -99,7 +99,6 @@ const CommandPanel = () => {
                 },
                 redirect: 'follow', // manual, *follow, error
                 referrerPolicy: 'no-referrer', // no-referrer, *client
-                body: JSON.stringify(data) // body data type must match "Content-Type" header
             })
             // const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("dataSourcePrice", dataSourcePrice)
