@@ -54,6 +54,20 @@ const CommandPanel = () => {
         "page_size": 1000
     }
 
+    const testRequestOnServer = async url => {
+        await fetch(url, {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *client
+        })
+    }
     useEffect(() => {
         if(allItems.length !== 0 ) {
             const arrStocks = []
@@ -100,11 +114,11 @@ const CommandPanel = () => {
             //     redirect: 'follow', // manual, *follow, error
             //     referrerPolicy: 'no-referrer', // no-referrer, *client
             // })
-            const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataSourcePrice = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("dataSourcePrice", dataSourcePrice)
             console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
-            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataPrices = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("dataPrices", dataPrices)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
@@ -160,8 +174,8 @@ const CommandPanel = () => {
 
         dispatch(openTables())
         try {
-            const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
-            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataSourcePrice = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataPrices = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
             dispatch(endLoading(dataSourcePrice))
