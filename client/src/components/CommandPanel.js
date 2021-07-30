@@ -279,7 +279,7 @@ const CommandPanel = () => {
         for (let i = 0; oldPricesJournal.length > i; i++) { // Делим запрос на запросы по 100 элементов
             requestJourney.push(oldPricesJournal[i])
             if (requestJourney.length === 100) {
-                const responseServer = await request("/api/price/send_price", "POST", requestJourney)
+                const responseServer = await testRequestOnServer("http://84.38.180.73:5000/api/price/send_price", "POST", requestJourney)
 
                 if(responseServer["status"] === "error") addError(requestJourney)
                 requestJourney = []
@@ -288,7 +288,7 @@ const CommandPanel = () => {
         while(reqLog.length !== 0) {
             for (const item of reqLog) {
                 try {
-                    const response =  await request("/api/price/send_price", "POST", item)
+                    const response =  await testRequestOnServer("http://84.38.180.73:5000/api/price/send_price", "POST", item)
                     if (response["status"] === "error") {
                         addError(item)
                     }
@@ -300,7 +300,7 @@ const CommandPanel = () => {
             }
         }
         dispatch(setLoading())
-        const responseServer = await request("/api/price/send_price", "POST", requestJourney)
+        const responseServer = await request("http://84.38.180.73:5000/api/price/send_price", "POST", requestJourney)
         dispatch(resetData())
         // dispatch(getProductInfo(data, true))
         console.log(responseServer)
