@@ -8,7 +8,7 @@ export const useHttp = () => {
     const request = useCallback(
         async (
             url,
-            modeCors = 'no-cors',
+            mode = 'no-cors',
             method = 'GET',
             body= null,
             headers = {}) => {
@@ -21,7 +21,7 @@ export const useHttp = () => {
             }
 
 
-           const response = await fetch( url, {method, modeCors, body, headers})
+           const response = await fetch( url, {method, mode, body, headers})
            const data = await response.json()
 
             if(!response.ok) {
