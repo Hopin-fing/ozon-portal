@@ -88,23 +88,10 @@ const CommandPanel = () => {
         dispatch(openTables())
         try {
             console.log("test")
-            const dataSourcePrice = await fetch("http://84.38.180.73:5000/api/price/get_sourcePrice", {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                mode: 'no-cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
-                headers: {
-                    'Content-Type': 'application/json'
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                redirect: 'follow', // manual, *follow, error
-                referrerPolicy: 'no-referrer', // no-referrer, *client
-            })
-            // const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
-            console.log("dataSourcePrice", dataSourcePrice)
+            const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
-            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_price")
             console.log("dataPrices", dataPrices)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
@@ -161,7 +148,7 @@ const CommandPanel = () => {
         dispatch(openTables())
         try {
             const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
-            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_price")
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
             dispatch(endLoading(dataSourcePrice))

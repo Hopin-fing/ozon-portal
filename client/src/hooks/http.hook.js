@@ -20,16 +20,7 @@ export const useHttp = () => {
             }
 
 
-           // const response = await fetch( url, {method, mode: 'no-cors', body, headers})
-           const response = await fetch( url, {
-                    method, // *GET, POST, PUT, DELETE, etc.
-                   mode: 'no-cors', // no-cors, *cors, same-origin
-                   headers: {
-                       'Content-Type': 'application/json'
-                   },
-                   body
-               })
-            console.log("response", response)
+           const response = await fetch( url, {method, body, headers})
            const data = await response.json()
 
             if(!response.ok) {
