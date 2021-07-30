@@ -20,7 +20,7 @@ export const useHttp = () => {
             }
 
 
-           const response = await fetch( url, {method, body, headers})
+           const response = await fetch( url, {method, mode: 'no-cors', body, headers})
            const data = await response.json()
 
             if(!response.ok) {
