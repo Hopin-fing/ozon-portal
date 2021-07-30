@@ -84,15 +84,11 @@ const CommandPanel = () => {
     const existProductTree = Object.keys(productTree).length
 
     const onOpenTables = async () => {
-        console.log("test")
         dispatch(openTables())
         try {
-            console.log("test")
             const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
-            console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
             const dataPrices = await request("http://84.38.180.73:5000/api/price/get_price")
-            console.log("dataPrices", dataPrices)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
         }catch (e) {
