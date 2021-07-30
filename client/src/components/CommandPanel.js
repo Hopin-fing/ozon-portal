@@ -54,23 +54,6 @@ const CommandPanel = () => {
         "page_size": 1000
     }
 
-    const testRequestOnServer = async url => {
-        const response = await fetch(url, {
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            mode: 'no-cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *client
-        })
-         await response.then((data) => {
-            console.log(data); // JSON data parsed by `response.json()` call
-        });
-    }
     useEffect(() => {
         if(allItems.length !== 0 ) {
             const arrStocks = []
@@ -105,23 +88,23 @@ const CommandPanel = () => {
         dispatch(openTables())
         try {
             console.log("test")
-            // const dataSourcePrice = await fetch("http://84.38.180.73:5000/api/price/get_sourcePrice", {
-            //     method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            //     mode: 'no-cors', // no-cors, *cors, same-origin
-            //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            //     credentials: 'same-origin', // include, *same-origin, omit
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //         // 'Content-Type': 'application/x-www-form-urlencoded',
-            //     },
-            //     redirect: 'follow', // manual, *follow, error
-            //     referrerPolicy: 'no-referrer', // no-referrer, *client
-            // })
-            const dataSourcePrice = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataSourcePrice = await fetch("http://84.38.180.73:5000/api/price/get_sourcePrice", {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'no-cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *client
+            })
+            // const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("dataSourcePrice", dataSourcePrice)
             console.log("after /get_sourcePrice")
             // console.log(".docs", dataSourcePrice.docs)
-            const dataPrices = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
             console.log("dataPrices", dataPrices)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
@@ -177,8 +160,8 @@ const CommandPanel = () => {
 
         dispatch(openTables())
         try {
-            const dataSourcePrice = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
-            const dataPrices = await testRequestOnServer("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataSourcePrice = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
+            const dataPrices = await request("http://84.38.180.73:5000/api/price/get_sourcePrice")
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
             dispatch(endLoading(dataSourcePrice))
@@ -282,7 +265,7 @@ const CommandPanel = () => {
         for (let i = 0; oldPricesJournal.length > i; i++) { // Делим запрос на запросы по 100 элементов
             requestJourney.push(oldPricesJournal[i])
             if (requestJourney.length === 100) {
-                const responseServer = await testRequestOnServer("http://84.38.180.73:5000/api/price/send_price", "POST", requestJourney)
+                const responseServer = await request("/api/price/send_price", "POST", requestJourney)
 
                 if(responseServer["status"] === "error") addError(requestJourney)
                 requestJourney = []
@@ -291,7 +274,7 @@ const CommandPanel = () => {
         while(reqLog.length !== 0) {
             for (const item of reqLog) {
                 try {
-                    const response =  await testRequestOnServer("http://84.38.180.73:5000/api/price/send_price", "POST", item)
+                    const response =  await request("/api/price/send_price", "POST", item)
                     if (response["status"] === "error") {
                         addError(item)
                     }
@@ -303,7 +286,7 @@ const CommandPanel = () => {
             }
         }
         dispatch(setLoading())
-        const responseServer = await request("http://84.38.180.73:5000/api/price/send_price", "POST", requestJourney)
+        const responseServer = await request("/api/price/send_price", "POST", requestJourney)
         dispatch(resetData())
         // dispatch(getProductInfo(data, true))
         console.log(responseServer)
