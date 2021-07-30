@@ -66,9 +66,8 @@ const CommandPanel = () => {
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *client
-            body: {}
         })
-        return await response.then((data) => {
+         await response.then((data) => {
             console.log(data); // JSON data parsed by `response.json()` call
         });
     }
