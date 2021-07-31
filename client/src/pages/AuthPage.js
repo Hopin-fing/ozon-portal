@@ -1,23 +1,30 @@
-import React, {useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import {useHttp} from "../hooks/http.hook";
+import {AuthContext} from "../context/AuthContext";
+import {useMessage} from "../hooks/message.hook";
 
 export const AuthPage = () => {
-    const {loading, error, request} = useHttp()
+    const auth = useContext(AuthContext)
+
+    const { error, request, clearError} = useHttp()
     const [form, setForm] = useState( {
         login: '', password: ''
     })
+
+
+    useEffect(() => {
+        window.M.updateTextFields()
+    }, [])
 
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value} )
     }
 
-    const registerHandler = async () => {
+    const loginHandler = async () => {
         try {
-            const data = await request('/api/auth/register', "POST", {...form})
-            console.log("Data", data)
-        }catch (e) {
-
-        }
+            const data = await request('/api/auth/login', 'POST', {...form})
+            auth.login(data.token, data.userId)
+        } catch (e) {}
     }
     return(
         <div className="row">
@@ -32,6 +39,7 @@ export const AuthPage = () => {
                                 type="text"
                                 name="login"
                                 className="validate"
+                                value={form.login}
                                 onChange={changeHandler}
                             />
                             <label className="black-text" htmlFor="login">Login</label>
@@ -39,20 +47,20 @@ export const AuthPage = () => {
                         <div className="input-field">
                             <input
                                 id="password"
-                                type="text"
+                                type="password"
                                 name="password"
                                 className="validate"
+                                value={form.password}
                                 onChange={changeHandler}
                             />
                             <label className="black-text" htmlFor="password">Password</label>
                         </div>
                     </div>
                     <div className="card-action">
-                        <button className="btn green lighten-1">Войти</button>
                         <button
-                            className="btn yellow lighten-1"
-                            onClick={registerHandler}
-                        >Регистрация</button>
+                            className="btn green lighten-1"
+                            onClick={loginHandler}
+                        >Войти</button>
                     </div>
                 </div>
 
