@@ -88,12 +88,21 @@ const CommandPanel = () => {
         dispatch(openTables())
         try {
             const dataSourcePrice = await request(`http://84.38.180.73:5000/api/price/get_sourcePrice`)
-            // console.log(".docs", dataSourcePrice.docs)
             const dataPrices = await request(`http://84.38.180.73:5000/api/price/get_price`)
+
+            // if(!dataPrices.ok) throw new Error( await  dataPrices.json().message || 'Ошибка')
+            // if(dataPrices.ok) dispatch(getProductInfo(dataSourcePrice.docs))
+
+            dataPrices.ok
+                ? dispatch(getProductInfo(dataSourcePrice.docs))
+                : throw new Error( await  dataPrices.json().message || 'Ошибка')
+
+
             dispatch(getPriceJournal(dataPrices.docs))
-            dispatch(getProductInfo(dataSourcePrice.docs))
+
         }catch (e) {
             console.log("Ошибка :" , e)
+            dispatch(getProductInfo(dataSourcePrice.docs))
         }
 
 
