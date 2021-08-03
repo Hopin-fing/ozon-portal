@@ -26,6 +26,7 @@ const CommandPanel = () => {
     const pricesJournal = useSelector(({products}) => products.pricesJournal);
     const allItems = useSelector(({products}) => products.allItems);
     const oldPricesJournal = pricesJournal
+    const domen = "http://84.38.180.73:5000"
 
     const {request} = useHttp()
 
@@ -86,9 +87,9 @@ const CommandPanel = () => {
     const onOpenTables = async () => {
         dispatch(openTables())
         try {
-            const dataSourcePrice = await request("/api/price/get_sourcePrice")
+            const dataSourcePrice = await request(`${domen}/api/price/get_sourcePrice`)
             // console.log(".docs", dataSourcePrice.docs)
-            const dataPrices = await request("/api/price/get_price")
+            const dataPrices = await request(`${domen}/api/price/get_price`)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
         }catch (e) {
@@ -139,8 +140,8 @@ const CommandPanel = () => {
 
         dispatch(openTables())
         try {
-            const dataSourcePrice = await request("/api/price/get_sourcePrice")
-            const dataPrices = await request("/api/price/get_price")
+            const dataSourcePrice = await request(`${domen}/api/price/get_sourcePrice`)
+            const dataPrices = await request(`${domen}/api/price/get_price`)
             dispatch(getPriceJournal(dataPrices.docs))
             dispatch(getProductInfo(dataSourcePrice.docs))
             dispatch(endLoading(dataSourcePrice))
