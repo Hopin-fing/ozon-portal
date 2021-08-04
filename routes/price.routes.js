@@ -16,6 +16,7 @@ router.get('/get_sourcePrice', async (req, res) => {
 })
 
 router.get('/get_price', async (req, res) => {
+    console.log('/get_price run')
     try{
         const docs = await Price.find();
         return res.status(200).json({docs})
