@@ -88,7 +88,6 @@ const CommandPanel = () => {
         console.log("start onOpenTables")
         try {
             const dataSourcePrice = await request(`${domen}/api/price/get_sourcePrice`)
-            console.log("dataPrices", dataPrices)
 
             const dataPrices = await request(`${domen}/api/price/get_price`)
 
