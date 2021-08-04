@@ -89,6 +89,8 @@ const CommandPanel = () => {
             const dataSourcePrice = await request(`${domen}/api/price/get_sourcePrice`)
             const dataPrices = await request(`${domen}/api/price/get_price`)
 
+            console.log("dataPrices", dataPrices)
+
             if (!dataPrices.ok) throw new Error(await dataPrices.json().message || 'Ошибка')
             if (dataPrices.ok) dispatch(getProductInfo(dataSourcePrice.docs))
 
