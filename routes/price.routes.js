@@ -21,6 +21,7 @@ router.get('/get_price', async (req, res) => {
     try{
         const docs = await Price.find();
         console.log('/get_price do')
+        console.log('/get_price docs', docs)
         return res.status(200).json({docs})
     }catch (e) {
         res.status(500).json({ message: 'Что то не так с базой данных обратитесь к тех. специалисту'})
