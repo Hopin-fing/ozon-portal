@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "monit-price",
-      script: "./build/index",
+      script: "yarn start",
       watch: true,
       instance_var: '1',
       env: {
