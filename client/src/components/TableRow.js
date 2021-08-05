@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {sendPrice} from "../redux/actions/products";
+import {offPopup, popupOn, sendPrice} from "../redux/actions/products";
 import moment from "moment";
 import {useHttp} from "../hooks/http.hook";
 import {Link} from "react-router-dom";
 
 const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, barcode, balance, url}) => {
 
-    const [inputActive, setInputActive] = useState( false)
+
     const [value, setValue] = useState(parseInt(price))
     const pricesJournal = useSelector(({products}) => products.pricesJournal)
     const loading = useSelector(({products}) => products.loading)
+    const inputActive = useSelector(({products}) => products.activePopup);
+
 
     const dispatch = useDispatch();
 
@@ -67,7 +69,7 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
             let commission = Math.ceil(20 + 45 + value/100*5 + value/100*4.4 + (value-purchasePrice)/100*3)
 
             minPrice = purchasePrice + commission
-            setInputActive( false)
+            offPopup()
 
         }
 
@@ -75,12 +77,10 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
     }
 
     const handlerInput = () => {
-        setInputActive(true)
+        popupOn()
     }
 
-    const handlerPopupExit = () => {
-        setInputActive(false)
-    }
+
 
     const onChangeHandler = event => {
         const result = event.target.value.replace(/[^\d]/g, "")
@@ -120,9 +120,6 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
                     <i className="material-icons">chevron_right</i>
                 </Link>
             </td>
-            {inputActive ?
-                <td onClick={handlerPopupExit} className={"popup"}>''</td> :
-                null}
         </tr>
 
 

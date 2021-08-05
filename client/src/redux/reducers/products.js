@@ -7,7 +7,8 @@ const initialState = {
     allItems: [],
     pricesJournal:[],
     loading: false,
-    isOpen: false
+    isOpen: false,
+    activePopup: false
 }
 
 const addProductInfo = (allItems, productTree, data , state, arrPrices) => {
@@ -99,6 +100,18 @@ const productsReducer = (state = initialState, action) => {
                 ...state,
                 isOpen: true,
                 loading: true
+            }
+
+        case 'POPUP_ON':
+            return {
+                ...state,
+                activePopup: true
+            }
+
+        case 'POPUP_OFF':
+            return {
+                ...state,
+                activePopup: false
             }
 
         case 'RESET_DATA': {

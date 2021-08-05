@@ -15,6 +15,7 @@ function App() {
           token, login, logout, userId, isAuthenticated
       }}>
           <Router>
+
             <div className="had-container">
                 {routes}
             </div>

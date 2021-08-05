@@ -56,7 +56,7 @@ const CommandPanel = () => {
 
     useEffect(() => {
         if (allItems.length !== 0) {
-            const arrStocks = []
+            const objStocks = {}
             allItems.forEach(item => {
                     const offerId = item["offer_id"]
                     const productId = item["id"]
@@ -69,13 +69,14 @@ const CommandPanel = () => {
                         "stock": stock,
                         "warehouse_id": cabinetsInfo[cabinet]["warehouse"]
                     }
-                    if (stock !== stockOzon) arrStocks.push(result)
+                    if(!objStocks.hasOwnProperty(cabinet)) objStocks[cabinet] = []
+                    if (stock !== stockOzon) objStocks[cabinet].push(result)
                 }
             )
 
             console.log("allItems ", allItems)
-            console.log("arrStocks ", arrStocks)
-            dispatch(importStocks(arrStocks))
+            console.log("objStocks ", objStocks)
+            dispatch(importStocks(objStocks))
 
         }
     }, [allItems])
@@ -92,11 +93,9 @@ const CommandPanel = () => {
             const dataPrices = await request(`${domen}/api/price/get_price`)
 
             console.log("dataPrices", dataPrices)
+            console.log("dataPrices", dataSourcePrice)
 
-            if (!dataPrices.ok) throw new Error(await dataPrices.json().message || 'Ошибка')
-            if (dataPrices.ok) dispatch(getProductInfo(dataSourcePrice.docs))
-
-
+            dispatch(getProductInfo(dataSourcePrice.docs))
             dispatch(getPriceJournal(dataPrices.docs))
 
         } catch (e) {

@@ -16,7 +16,7 @@ const Home = () => {
                 ? <div className="row">
                     <div className="col s12 text-center">
                         <p className="center-align">
-                            Загрузка...
+                            Загрузка может длиться 3 - 5 минут
                         </p>
 
                     </div>

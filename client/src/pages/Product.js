@@ -74,7 +74,7 @@ const Product =  React.memo(function Product ({match, location}) {
                         <li>Цена: {`${parseInt(products.price)} р.`}</li>
                         <li>Коммиссия: {products.commissions
                             ?`${parseInt(products.commissions[0].value)} р.`
-                            : `Загрузка ...`
+                            : `Загрузка может длиться 3-5 минут`
                         }</li>
                     </ul>
                 </div>

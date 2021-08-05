@@ -26,6 +26,14 @@ const sendRequestGet = async (url) => {
     return axios.get(url,{headers})
 }
 
+export const popupOn = () => ({
+    type: 'POPUP_ON'
+})
+
+export const offPopup = () => ({
+    type: 'POPUP_OFF'
+})
+
 export const setLoading = () => ({
     type: 'SET_LOADING'
 })
@@ -54,26 +62,50 @@ export const testRequest = bodyRequest => async () => {
 export const importStocks = bodyRequest => async () => {
 
     const url = "https://api-seller.ozon.ru/v2/products/stocks"
-    let arrResponseData = {"stocks" :[]}
 
-    console.log("importStocks")
+    //TODO: Сделать смену кабинетов для импорта остатков
 
-    for(const [index, element] of bodyRequest.entries()) {
-        try{
-        if(index % 99 === 0 && index !== 0) {
-            console.log(arrResponseData)
-            const response = await sendRequestPost(url, arrResponseData)
-            arrResponseData.stocks = []
-            console.log(response.data)
-        }
 
-            arrResponseData.stocks.push(element)
-        }catch (e) {
-            console.log(element)
+    const filterRequest =  async cabinet => {
+        for(let [firstIndex, cabinet] of bodyRequest.entries()) {
+            const arrResponseData = {"stocks" :[]}
+            try{
+                for(let i = 0; bodyRequest[cabinet].length >= i ; i++) {
+                    try{
+                        if(index % 99 === 0 && index !== 0) {
+                            console.log(arrResponseData)
+                            const response = await sendRequestPost(url, arrResponseData)
+                            arrResponseData.stocks = []
+                            console.log(response.data)
+                        }
+
+                        arrResponseData.stocks.push(element)
+                    }catch (e) {
+                        console.log(element)
+                    }
+                }
+                console.log("arrResponseData.stocks", arrResponseData.stocks)
+
+                if(arrResponseData.stocks.length === 0 ) return
+                await sendRequestPost(url, arrResponseData).then(data => console.log(data.data))
+            }catch (e) {
+                console.log("Обновления остатков не произошло, по причине ", e)
+            }
         }
     }
-    if(arrResponseData.stocks.length === 0 ) return
-    await sendRequestPost(url, arrResponseData).then(data => console.log(data.data))
+
+    console.log("importStocks")
+    Object.keys(bodyRequest).forEach(cabinet => {
+        filterRequest(cabinet)
+    })
+
+
+
+
+
+
+
+    console.log("sendRequestPost done")
 }
 
 export const importProduct = bodyRequest => async dispatch => {
