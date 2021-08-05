@@ -67,30 +67,28 @@ export const importStocks = bodyRequest => async () => {
 
 
     const filterRequest =  async cabinet => {
-        for(let [firstIndex, cabinet] of bodyRequest.entries()) {
-            const arrResponseData = {"stocks" :[]}
-            try{
-                for(let i = 0; bodyRequest[cabinet].length >= i ; i++) {
-                    try{
-                        if(index % 99 === 0 && index !== 0) {
-                            console.log(arrResponseData)
-                            const response = await sendRequestPost(url, arrResponseData)
-                            arrResponseData.stocks = []
-                            console.log(response.data)
-                        }
-
-                        arrResponseData.stocks.push(element)
-                    }catch (e) {
-                        console.log(element)
+        const arrResponseData = {"stocks" :[]}
+        try{
+            for(let [index, element] of bodyRequest[cabinet].entries()) {
+                try{
+                    if(index % 99 === 0 && index !== 0) {
+                        console.log(arrResponseData)
+                        const response = await sendRequestPost(url, arrResponseData, cabinet)
+                        arrResponseData.stocks = []
+                        console.log(response.data)
                     }
-                }
-                console.log("arrResponseData.stocks", arrResponseData.stocks)
 
-                if(arrResponseData.stocks.length === 0 ) return
-                await sendRequestPost(url, arrResponseData).then(data => console.log(data.data))
-            }catch (e) {
-                console.log("Обновления остатков не произошло, по причине ", e)
+                    arrResponseData.stocks.push(element)
+                }catch (e) {
+                    console.log(element)
+                }
             }
+            console.log("arrResponseData.stocks", arrResponseData.stocks)
+
+            if(arrResponseData.stocks.length === 0 ) return
+            await sendRequestPost(url, arrResponseData, cabinet).then(data => console.log(data.data))
+        }catch (e) {
+            console.log("Обновления остатков не произошло, по причине ", e)
         }
     }
 
