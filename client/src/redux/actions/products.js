@@ -1,14 +1,12 @@
 import axios from "axios";
 import cabinetsInfo from "../../methods/clientData";
 
-
 const headers = {
-    "Client-Id": cabinetsInfo.NeoVishen.id,
-    "Api-Key" : cabinetsInfo.NeoVishen.apiKey,
+    "Client-Id": cabinetsInfo.My_Alcon.id,
+    "Api-Key" : cabinetsInfo.My_Alcon.apiKey,
     "Content-Type":"application/json",
     "Retry-After": 4000
 }
-
 
 const sendRequestPost = async (url, body, header = null) => {
     const customHeaders = headers
@@ -22,17 +20,10 @@ const sendRequestPost = async (url, body, header = null) => {
         ? axios.post(url, body, {headers : customHeaders})
         : axios.post(url, body, {headers})
 }
+
 const sendRequestGet = async (url) => {
     return axios.get(url,{headers})
 }
-
-export const popupOn = () => ({
-    type: 'POPUP_ON'
-})
-
-export const offPopup = () => ({
-    type: 'POPUP_OFF'
-})
 
 export const setLoading = () => ({
     type: 'SET_LOADING'
@@ -63,9 +54,6 @@ export const importStocks = bodyRequest => async () => {
 
     const url = "https://api-seller.ozon.ru/v2/products/stocks"
 
-    //TODO: Сделать смену кабинетов для импорта остатков
-
-
     const filterRequest =  async cabinet => {
         const arrResponseData = {"stocks" :[]}
         try{
@@ -73,9 +61,8 @@ export const importStocks = bodyRequest => async () => {
                 try{
                     if(index % 99 === 0 && index !== 0) {
                         console.log(arrResponseData)
-                        const response = await sendRequestPost(url, arrResponseData, cabinet)
+                        await sendRequestPost(url, arrResponseData, cabinet)
                         arrResponseData.stocks = []
-                        console.log(response.data)
                     }
 
                     arrResponseData.stocks.push(element)
@@ -233,28 +220,34 @@ export const sendPrice = (bodyRequest, countRequest = "single") =>  async (dispa
     dispatch(setLoading())
     const url = "https://api-seller.ozon.ru/v1/product/import/prices"
     const arrResponseData = {"prices" : []}
+    let payload = []
+    let response
 
     console.log("price bodyRequest", bodyRequest)
-    for(const [index, element] of bodyRequest.entries()) {
+    for(const [index, element] of Object.entries(bodyRequest)) {
         if(index % 999 === 0 && index !== 0) {
             await sendRequestPost(url, arrResponseData)
+
             arrResponseData.prices = []
         }
         try{
             arrResponseData.prices.push(element)
         }catch (e) {
-            console.log(element)
+            console.log("Ошибка ", element)
         }
-        
     }
 
+    if(countRequest === "single") response = await sendRequestPost(url, arrResponseData, Object.keys(bodyRequest)[0] )
 
-    const response = await sendRequestPost(url, arrResponseData)
+    Object.keys(bodyRequest).forEach(item => {
+        payload.push(bodyRequest[item])
+    })
+
 
     if (response.data.result[0].updated) {
         dispatch({
             type: 'SEND_PRICE',
-            payload: bodyRequest[0]
+            payload: payload[0]
         })
         console.log("Цена обновилась!")
     }

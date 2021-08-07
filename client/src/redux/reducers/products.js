@@ -102,18 +102,6 @@ const productsReducer = (state = initialState, action) => {
                 loading: true
             }
 
-        case 'POPUP_ON':
-            return {
-                ...state,
-                activePopup: true
-            }
-
-        case 'POPUP_OFF':
-            return {
-                ...state,
-                activePopup: false
-            }
-
         case 'RESET_DATA': {
             return {
                 item: {},
@@ -196,6 +184,8 @@ const productsReducer = (state = initialState, action) => {
             const allItems = [...state.allItems]
             const productTree = {...state.productTree}
             const objRequest = action.payload
+
+
 
             const objAllItems =  allItems.find( x => x["offer_id"] === objRequest["offer_id"])
             let objProductTree

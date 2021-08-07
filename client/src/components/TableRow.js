@@ -1,36 +1,44 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {offPopup, popupOn, sendPrice} from "../redux/actions/products";
+import {sendPrice} from "../redux/actions/products";
 import moment from "moment";
 import {useHttp} from "../hooks/http.hook";
 import {Link} from "react-router-dom";
 
-const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, barcode, balance, url}) => {
-
+const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, barcode, cabinet, balance, url}) => {
 
     const [value, setValue] = useState(parseInt(price))
+    const [oldValue, setOldValue] = useState(parseInt(price))
+    const [isActiveInput, setInput] = useState(false)
+    const [isRightExitPopup, setRightExitPopup] = useState(true)
     const pricesJournal = useSelector(({products}) => products.pricesJournal)
     const loading = useSelector(({products}) => products.loading)
-    const inputActive = useSelector(({products}) => products.activePopup);
-
 
     const dispatch = useDispatch();
 
     const {request} = useHttp()
 
+    useEffect(() => {
+        if(isRightExitPopup === false){
+            setValue(oldValue)
+            setRightExitPopup(true)
+        }
+    }, [isRightExitPopup])
 
-    const bodyRequestPrice =  [
-        {
+
+    const bodyRequestPrice =  {
+        [cabinet] :{
             "offer_id": offerId,
             "old_price": "0",
             "premium_price": "0",
             "price": value.toString(),
             "product_id": id
         }
-    ]
+    }
 
 
     const onSubmit = async event => {
+
         if(event.key !== 'Enter') {
             return
         }
@@ -40,6 +48,7 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
             const oldPricesJournal = pricesJournal
             const actualData = moment().format('MMMM Do YYYY, h:mm:ss a')
             let elementPriceJournal = oldPricesJournal.find(x => x.art === offerId)
+            let commission = Math.ceil(20 + 45 + value/100*5 + value/100*4.4 + (value-purchasePrice)/100*3)
             const dataObj = {
                 data : actualData,
                 price : value.toString()
@@ -49,6 +58,7 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
                 art : offerId,
                 name : name
             }
+
             if (elementPriceJournal)  {
                 elementPriceJournal["history"].push(dataObj)
                 if(elementPriceJournal["history"].length > 10) elementPriceJournal["history"].slice(-10)
@@ -60,24 +70,23 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
 
             requestJourney.push(elementPriceJournal)
 
-            const response =  await request("/api/price/send_price", "POST", requestJourney)
-
-            console.log("response ", response)
-
+            await request("/api/price/send_price", "POST", requestJourney)
             dispatch(sendPrice(bodyRequestPrice))
             setValue(value)
-            let commission = Math.ceil(20 + 45 + value/100*5 + value/100*4.4 + (value-purchasePrice)/100*3)
+            setOldValue(value)
 
             minPrice = purchasePrice + commission
-            offPopup()
-
+            setInput(false)
         }
-
 
     }
 
     const handlerInput = () => {
-        popupOn()
+        setInput(true)
+    }
+    const handlerPopupExit = () => {
+        setInput(false)
+        setRightExitPopup(false)
     }
 
 
@@ -86,11 +95,10 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
         const result = event.target.value.replace(/[^\d]/g, "")
         setValue(result)
     }
-
+    // TODO: Убрать скролл бар при появлении popup
 
     return (
         <tr >
-
             <td>{index}</td>
             <td>{offerId}</td>
             <td>{id}</td>
@@ -100,18 +108,19 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
                 ? <td>
                     Загрузка...
                 </td>
-                : <td className="cursor-pointer" onClick={handlerInput}>
-                    {inputActive
-                        ? <input
+                : isActiveInput ?
+                    <td>
+                        <input
                             className={"active-input"}
                             onChange={event => onChangeHandler(event)}
                             type="text"
                             value={value}
                             onKeyPress={onSubmit}/>
-                        : value}
-                </td>
-
+                        <div onClick={handlerPopupExit} className={"popup"}> </div>
+                    </td>
+                    : <td className="cursor-pointer" onClick={handlerInput}>{value}</td>
             }
+
             <td>{minPrice}</td>
             <td>{balance}</td>
 

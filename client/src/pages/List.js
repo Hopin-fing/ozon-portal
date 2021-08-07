@@ -1,27 +1,22 @@
-import React, {useState} from 'react';
-import {getListModel, offPopup} from "../redux/actions/products";
+import React, {useEffect, useState} from 'react';
+import {getListModel, popupOff} from "../redux/actions/products";
 import {useDispatch, useSelector} from "react-redux";
 import LinkHome from "../components/LinkHome";
 import TableRow from "../components/TableRow";
 
 const List = ({match}) => {
-    console.log("match", match)
     const urlName = match.params.name
     const dispatch = useDispatch();
-    const activePopup = useSelector(({products}) => products.activePopup);
+
     dispatch(getListModel(urlName))
 
-    const handlerPopupExit = () => {
-        offPopup()
-    }
+
 
     const products = useSelector(({products}) => products.listModel);
     return (
         <> {products.length !== 0
             ?<>
-                {activePopup ?
-                <td onClick={handlerPopupExit} className={"popup"}>''</td> :
-                null}
+
                 <LinkHome/>
                 <div className="row">
                     <div className="col s12">
@@ -50,6 +45,7 @@ const List = ({match}) => {
                                        id={item.id}
                                        name={item.name}
                                        barcode={item.barcode}
+                                       cabinet={item.cabinet}
                                        price={item.price}
                                        purchasePrice={item.purchasePrice}
                                        balance={item.balance}

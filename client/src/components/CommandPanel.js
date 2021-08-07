@@ -27,6 +27,7 @@ const CommandPanel = () => {
     const allItems = useSelector(({products}) => products.allItems);
     const oldPricesJournal = pricesJournal
     const domen = "http://84.38.180.73:5000"
+    // const domen = ""
 
     const {request} = useHttp()
 
@@ -76,7 +77,7 @@ const CommandPanel = () => {
 
             console.log("allItems ", allItems)
             console.log("objStocks ", objStocks)
-            dispatch(importStocks(objStocks))
+            // dispatch(importStocks(objStocks))
 
         }
     }, [allItems])
@@ -271,11 +272,12 @@ const CommandPanel = () => {
                 }
             }
         }
+
         dispatch(setLoading())
-        const responseServer = await request("/api/price/send_price", "POST", requestJourney)
+        // const responseServer = await request("/api/price/send_price", "POST", requestJourney)
         dispatch(resetData())
         // dispatch(getProductInfo(data, true))
-        console.log(responseServer)
+        // console.log(responseServer)
         console.log("Запись журнала успешно закончена!")
         dispatch(endLoading())
     }
@@ -285,19 +287,19 @@ const CommandPanel = () => {
         <div className="col s8 offset-s2">
             <div className="card blue-grey darken-2">
                 <div className="card-content white-text">
-                    <span className="card-title">Переформатирование запроса в запрос API OZONE</span>
+                    <span className="card-title">Мониторинг цен по кабинетам на OZON</span>
 
                 </div>
-                <div className="card-action center">
-                    <button
-                        className="yellow waves-effect waves-light btn darken-3"
-                        onClick={handlerSendPrices}
-                        disabled={!existProductTree || isLoading}
+                {/*<div className="card-action center">*/}
+                {/*    <button*/}
+                {/*        className="yellow waves-effect waves-light btn darken-3"*/}
+                {/*        onClick={handlerSendPrices}*/}
+                {/*        disabled={!existProductTree || isLoading}*/}
 
-                    >Отправить новую цену
-                    </button>
+                {/*    >Отправить новую цену*/}
+                {/*    </button>*/}
 
-                </div>
+                {/*</div>*/}
 
             </div>
 
