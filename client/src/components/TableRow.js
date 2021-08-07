@@ -13,6 +13,7 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
     const [isRightExitPopup, setRightExitPopup] = useState(true)
     const pricesJournal = useSelector(({products}) => products.pricesJournal)
     const loading = useSelector(({products}) => products.loading)
+    const domen = "http://84.38.180.73:5000"
 
     const dispatch = useDispatch();
 
@@ -70,7 +71,7 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
 
             requestJourney.push(elementPriceJournal)
 
-            await request("/api/price/send_price", "POST", requestJourney)
+            await request(`${domen}/api/price/send_price`, "POST", requestJourney)
             dispatch(sendPrice(bodyRequestPrice))
             setValue(value)
             setOldValue(value)
