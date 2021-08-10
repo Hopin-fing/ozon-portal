@@ -274,10 +274,10 @@ const CommandPanel = () => {
         }
 
         dispatch(setLoading())
-        // const responseServer = await request("/api/price/send_price", "POST", requestJourney)
+        const responseServer = await request("/api/price/send_price", "POST", requestJourney)
         dispatch(resetData())
         // dispatch(getProductInfo(data, true))
-        // console.log(responseServer)
+        console.log(responseServer)
         console.log("Запись журнала успешно закончена!")
         dispatch(endLoading())
     }

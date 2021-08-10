@@ -2,6 +2,7 @@ import React from 'react';
 import CommandPanel from "../components/CommandPanel";
 import Tabs from "../components/Tabs";
 import {useSelector} from "react-redux";
+import ChatPanel from "../components/ChatPanel";
 
 const Home = () => {
     const loading = useSelector(({products}) => products.loading);
@@ -11,6 +12,7 @@ const Home = () => {
         <div>
             <div className="row">
                 <CommandPanel/>
+                <ChatPanel/>
             </div>
             {loading
                 ? <div className="row">

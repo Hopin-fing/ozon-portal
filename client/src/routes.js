@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import List from "./pages/List";
 import Product from "./pages/Product";
 import {AuthPage} from "./pages/AuthPage";
+import Chat from "./pages/Chat";
 
 
 
@@ -13,6 +14,7 @@ export const useRoutes = isAuthenticated => {
             <Route path="/" exact  component={Home}/>
             <Route path="/list/:name" component={List}/>
             <Route path="/product/:name" component={Product}/>
+            <Route path="/chat" component={Chat}/>
             <Redirect to="/"/>
         </Switch>
     )

@@ -1,0 +1,54 @@
+@import '../variables';
+
+.popup {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,.5);
+  cursor: pointer;
+}
+
+.active-input {
+  position: relative;
+  z-index: 1;
+  background-color: white !important;
+  border-radius: 10px !important;
+}
+
+.none-input {
+  display: none;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  .button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    &:hover {
+      background-color: #ddd;
+    }
+    &:active {
+      background-color: #ccc;
+    }
+  }
+}
+
+.tab-content {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
