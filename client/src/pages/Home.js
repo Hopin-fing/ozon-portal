@@ -3,6 +3,7 @@ import CommandPanel from "../components/CommandPanel";
 import Tabs from "../components/Tabs";
 import {useSelector} from "react-redux";
 import ChatPanel from "../components/ChatPanel";
+import {Loader} from "../components/Loader";
 
 const Home = () => {
     const loading = useSelector(({products}) => products.loading);
@@ -17,6 +18,7 @@ const Home = () => {
             {loading
                 ? <div className="row">
                     <div className="col s12 text-center">
+                        <Loader/>
                         <p className="center-align">
                             Загрузка может длиться 3 - 5 минут
                         </p>

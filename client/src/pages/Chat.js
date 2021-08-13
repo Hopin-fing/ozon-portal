@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {getMessageHistory, setLoading} from "../redux/actions/chat";
+import {useDispatch, useSelector} from "react-redux";
+import {useHttp} from "../hooks/http.hook";
+import {Loader} from "../components/Loader";
 
 const Chat = () => {
     const [messageValue, setMessageValue] = React.useState('');
     const messagesRef = React.useRef(null);
+
+    const loading = useSelector(({chat}) => chat.loading);
+    const dispatch = useDispatch();
+    const {request} = useHttp()
+
+    useEffect(async () => {
+        dispatch(setLoading())
+        const dataHistory = await request(`/api/chat/get_messageHistory`)
+        dispatch(getMessageHistory(dataHistory.docs))
+    }, [])
 
     const onSendMessage = () => {
     //     socket.emit('ROOM:NEW_MESSAGE', {
@@ -20,12 +34,17 @@ const Chat = () => {
     // }, [messages]);
 
     return (
-        <div className="chat">
-            <div className="cabinet-list__container">
+        <div>
+            {loading
+                ? <Loader/>
+                : <div className="chat">
+                    <div className="cabinet-list__container">
 
-
-            </div>
+                    </div>
+                </div>
+            }
         </div>
+
     )
 
     return (

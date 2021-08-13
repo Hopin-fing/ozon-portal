@@ -15,6 +15,7 @@ export const useRoutes = isAuthenticated => {
             <Route path="/list/:name" component={List}/>
             <Route path="/product/:name" component={Product}/>
             <Route path="/chat" component={Chat}/>
+            <Route path="/chat/:name" component={Chat}/>
             <Redirect to="/"/>
         </Switch>
     )
