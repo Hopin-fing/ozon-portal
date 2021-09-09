@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "monit-price",
+      name: "ozon-portal",
       script: "yarn start",
       watch: true,
       instance_var: '1',
