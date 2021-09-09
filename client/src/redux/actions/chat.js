@@ -5,6 +5,9 @@ const searchRightCabinet = (chatId, history) => {
     if(isRightChat) return isRightChat["cabinet"]
 }
 
+const domen = "http://84.38.180.73:5000"
+// const domen = ""
+
 export const setLoading = () => ({
     type: 'SET_LOADING_CHAT',
 })
@@ -19,7 +22,8 @@ export const getListChat = data => ({
 })
 
 export const getHistoryMessage = (chatId, history) => async (dispatch) => {
-    const url = "/api/chat/get_messageHistory"
+
+    const url = `${domen}/api/chat/get_messageHistory`
     const bodyRequest = {
         "chat_id": chatId,
         "headers": searchRightCabinet(chatId, history)
@@ -41,7 +45,7 @@ export const getHistoryMessage = (chatId, history) => async (dispatch) => {
 }
 
 export const sendMessage = (chatId, message, history) => async () => {
-    const url = "/api/chat/send_message"
+    const url = `${domen}/api/chat/send_message`
 
     const bodyRequest = {
         "chat_id": chatId,
@@ -56,7 +60,7 @@ export const sendMessage = (chatId, message, history) => async () => {
 }
 
 export const markRead = (chatId, history) => async (dispatch) => {
-    const url = "/api/chat/mark_read"
+    const url = `${domen}/api/chat/mark_read`
     const bodyRequest = {
         "chat_id": chatId
     }

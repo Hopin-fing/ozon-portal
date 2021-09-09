@@ -9,13 +9,13 @@ import Chat from "./pages/Chat";
 export const useRoutes = isAuthenticated => {
     if(isAuthenticated) return (
         <Switch>
-            <Route path="/" exact  component={Home}/>
+            <Route path="/" exact component={Home}/>
             <Route path="/list/:name" component={List}/>
             <Route path="/product/:name" component={Product}/>
-            <Route path="/chat_list" exact component={Chat}/>
+            <Route path="/chat_list" component={Chat}/>
             {/*<Route path="/chat_list/:nameCabinet" component={Chat}/>*/}
             <Route path="/chat/:nameChat" component={Chat}/>
-            <Redirect to="/"/>
+            <Redirect to="/" component={Home}/>
         </Switch>
     )
     return (

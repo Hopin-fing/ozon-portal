@@ -23,7 +23,7 @@ const Chat = memo(function Chat({match}) {
     const dispatch = useDispatch();
     const {request} = useHttp()
     const domen = "http://84.38.180.73:5000"
-    // const domen = "
+    // const domen = ""
 
 
     useEffect(async () => {

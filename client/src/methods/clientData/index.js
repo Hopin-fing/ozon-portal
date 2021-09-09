@@ -33,7 +33,7 @@ const cabinetsInfo = {
         "id": REACT_APP_CLIENT_ID_NEOVISHEN,
         "apiKey": REACT_APP_API_KEY_NEOVISHEN
     },
-    "Eye_gallery":{
+    "Eye_Gallery":{
         "id": REACT_APP_CLIENT_ID_EYE_GALLERY,
         "apiKey": REACT_APP_API_KEY_EYE_GALLERY
     }
