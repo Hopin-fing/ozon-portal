@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "axios-retry": "^3.1.9",
     "crypto-js": "^4.0.0",
+    "css-loader": "^6.2.0",
     "env-cmd": "^10.1.0",
     "lodash": "^4.17.21",
     "materialize-css": "^1.0.0-rc.2",
