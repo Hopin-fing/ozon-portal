@@ -22,12 +22,14 @@ const Chat = memo(function Chat({match}) {
     const messages = useSelector(({chat}) => chat.historyMessage);
     const dispatch = useDispatch();
     const {request} = useHttp()
+    const domen = "http://84.38.180.73:5000"
+    // const domen = "
 
 
     useEffect(async () => {
         if(!urlId && !chatId) {
             dispatch(setLoading())
-            const dataHistory = await request(`/api/chat/get_chatList`)
+            const dataHistory = await request(`${domen}/api/chat/get_chatList`)
             dispatch(getListChat(dataHistory.docs))
         }
     }, [])
