@@ -1,29 +1,5 @@
-import axios from "axios";
-import cabinetsInfo from "../../methods/clientData";
+import {sendRequestPost} from "../../methods/requestServer";
 
-const headers = {
-    "Client-Id": cabinetsInfo.My_Alcon.id,
-    "Api-Key" : cabinetsInfo.My_Alcon.apiKey,
-    "Content-Type":"application/json",
-    "Retry-After": 4000
-}
-
-const sendRequestPost = async (url, body, header = null) => {
-    const customHeaders = headers
-
-    if(header) {
-        customHeaders["Client-Id"] = cabinetsInfo[header].id
-        customHeaders["Api-Key"] = cabinetsInfo[header].apiKey
-    }
-
-    return header
-        ? axios.post(url, body, {headers : customHeaders})
-        : axios.post(url, body, {headers})
-}
-
-const sendRequestGet = async (url) => {
-    return axios.get(url,{headers})
-}
 
 export const setLoading = () => ({
     type: 'SET_LOADING'
@@ -84,12 +60,6 @@ export const importStocks = bodyRequest => async () => {
         filterRequest(cabinet)
     })
 
-
-
-
-
-
-
     console.log("sendRequestPost done")
 }
 
@@ -141,7 +111,7 @@ export const importProduct = bodyRequest => async dispatch => {
 export const getProductInfo = (data, isNewPrice = false) => async dispatch => {
     dispatch(setLoading())
 
-    const url = "https://api-seller.ozon.ru/v2/product/info/list"
+    const url = "/api/product/get_productInfo"
     const arrResponseData = {
     }
     const bodyRequestInfoList = {

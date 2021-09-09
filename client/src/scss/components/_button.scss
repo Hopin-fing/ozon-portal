@@ -4,4 +4,13 @@
  &-chat {
    margin-top: 7px;
  }
+  &-chat-active {
+    position: absolute;
+    top: 195px;
+    left: 12px;
+    font-size: 10px;
+    line-height: 193%;
+    width: 80%;
+  }
 }
+

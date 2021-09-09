@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getCommissions, getProduct, setLoading} from "../redux/actions/products";
-import LinkHome from "../components/LinkHome";
-import LinkList from "../components/LinkList";
+import {getCommissions, getProduct} from "../redux/actions/products";
+import LinkHome from "../components/Link/LinkHome";
+import LinkList from "../components/Link/LinkList";
 
 const Product =  React.memo(function Product ({match, location}) {
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getListModel, popupOff} from "../redux/actions/products";
 import {useDispatch, useSelector} from "react-redux";
-import LinkHome from "../components/LinkHome";
+import LinkHome from "../components/Link/LinkHome";
 import TableRow from "../components/TableRow";
 
 const List = ({match}) => {

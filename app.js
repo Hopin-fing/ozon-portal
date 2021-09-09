@@ -13,13 +13,13 @@ const corsOptions = {
     optionsSuccessStatus: 200
 };
 
-app.use(express.json({extended: true}))
+app.use(express.json({limit: '10mb', extended: true}))
+app.use(express.urlencoded({limit: '10mb', extended: true}))
 app.use(cors(corsOptions));
 app.use('/api/price', require('./routes/price.routes'))
 app.use('/api/product', require('./routes/products.routes'))
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/chat', require('./routes/chat.routes'))
-
 
 const PORT = config.get('port') || 5000
 
@@ -40,6 +40,7 @@ async function start() {
         })
 
         app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
+
 
 
     } catch (e) {

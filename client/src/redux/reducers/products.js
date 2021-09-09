@@ -146,13 +146,10 @@ const productsReducer = (state = initialState, action) => {
         }
 
         case 'GET_LIST_MODEL': {
-            let arrModels
-            let rightCabinet
-            let rightModel
+            let arrModels, rightModel
             Object.keys(state.productTree).map( nameCabinet => {
                 const result = Object.keys(state.productTree[nameCabinet]).find(item => action.payload === item)
                 if(result)  {
-                    rightCabinet = nameCabinet
                     rightModel = state.productTree[nameCabinet][result]
                 }
             })

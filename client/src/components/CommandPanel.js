@@ -19,15 +19,14 @@ import cabinetsInfo from "../methods/clientData";
 const CommandPanel = () => {
 
     const dispatch = useDispatch();
-
     const isOpen = useSelector(({products}) => products.isOpen);
     const isLoading = useSelector(({products}) => products.loading);
     const productTree = useSelector(({products}) => products.productTree);
     const pricesJournal = useSelector(({products}) => products.pricesJournal);
     const allItems = useSelector(({products}) => products.allItems);
     const oldPricesJournal = pricesJournal
-    const domen = "http://84.38.180.73:5000"
-    // const domen = ""
+    // const domen = "http://84.38.180.73:5000"
+    const domen = ""
 
     const {request} = useHttp()
 
@@ -70,7 +69,7 @@ const CommandPanel = () => {
                         "stock": stock,
                         "warehouse_id": cabinetsInfo[cabinet]["warehouse"]
                     }
-                    if(!objStocks.hasOwnProperty(cabinet)) objStocks[cabinet] = []
+                    if (!objStocks.hasOwnProperty(cabinet)) objStocks[cabinet] = []
                     if (stock !== stockOzon) objStocks[cabinet].push(result)
                 }
             )
@@ -87,22 +86,15 @@ const CommandPanel = () => {
 
     const onOpenTables = async () => {
         dispatch(openTables())
-        console.log("start onOpenTables")
         try {
             const dataSourcePrice = await request(`${domen}/api/price/get_sourcePrice`)
-
             const dataPrices = await request(`${domen}/api/price/get_price`)
-
-            console.log("dataPrices", dataPrices)
-            console.log("dataPrices", dataSourcePrice)
-
             dispatch(getProductInfo(dataSourcePrice.docs))
             dispatch(getPriceJournal(dataPrices.docs))
 
         } catch (e) {
             console.log("Ошибка :", e)
         }
-
 
     }
 
@@ -144,7 +136,6 @@ const CommandPanel = () => {
 
     const handlerResetData = async () => {
         dispatch(resetData())
-
         dispatch(openTables())
         try {
             const dataSourcePrice = await request(`${domen}/api/price/get_sourcePrice`)
@@ -155,7 +146,6 @@ const CommandPanel = () => {
         } catch (e) {
             console.log("Ошибка :", e)
         }
-
 
     }
 
@@ -303,22 +293,22 @@ const CommandPanel = () => {
 
             </div>
 
-            <div className="card">
-                <div className="card-action center brown lighten-5">
-                    {isOpen ? <button
-                            className="indigo waves-effect waves-light btn  darken-1"
-                            onClick={handlerResetData}
-                            disabled={isLoading}
-                        >Перезагрузить</button> :
-                        <button
-                            className="indigo waves-effect waves-light btn  darken-1"
-                            onClick={onOpenTables}
-                            disabled={isLoading}
-                        >Загрузить таблицу</button>
-                    }
+            {/*<div className="card">*/}
+            {/*    <div className="card-action center brown lighten-5">*/}
+            {/*        {isOpen ? <button*/}
+            {/*                className="indigo waves-effect waves-light btn  darken-1"*/}
+            {/*                onClick={handlerResetData}*/}
+            {/*                disabled={isLoading}*/}
+            {/*            >Перезагрузить</button> :*/}
+            {/*            <button*/}
+            {/*                className="indigo waves-effect waves-light btn  darken-1"*/}
+            {/*                onClick={onOpenTables}*/}
+            {/*                disabled={isLoading}*/}
+            {/*            >Загрузить таблицу</button>*/}
+            {/*        }*/}
 
-                </div>
-            </div>
+            {/*    </div>*/}
+            {/*</div>*/}
 
         </div>
 

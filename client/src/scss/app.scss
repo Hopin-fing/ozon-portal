@@ -10,6 +10,22 @@
   margin-bottom: 50px;
 }
 
+.link-home {
+  position: absolute;
+  top: 7px;
+  left: 12px;
+}
+
+.link-list-chat {
+  position: absolute;
+  top: 60px;
+  left: 12px;
+}
+
+.link-home, .link-list-chat {
+  width: 200px;
+}
+
 .had-container {
   position: relative;
 }

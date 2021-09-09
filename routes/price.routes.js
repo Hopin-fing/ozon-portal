@@ -5,7 +5,6 @@ const router = Router()
 
 
 router.get('/get_sourcePrice', async (req, res) => {
-    console.log('/get_sourcePrice run')
     try{
 
         const docs = await createFullCardsWB()
@@ -17,7 +16,6 @@ router.get('/get_sourcePrice', async (req, res) => {
 })
 
 router.get('/get_price', async (req, res) => {
-    console.log('/get_price run')
     try{
         const docs = await Price.find();
         console.log('/get_price do')
