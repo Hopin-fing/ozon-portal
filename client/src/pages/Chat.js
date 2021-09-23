@@ -22,8 +22,8 @@ const Chat = memo(function Chat({match}) {
     const messages = useSelector(({chat}) => chat.historyMessage);
     const dispatch = useDispatch();
     const {request} = useHttp()
-    // const domen = "http://84.38.180.73:5000"
-    const domen = ""
+    const domen = "http://84.38.180.73:5000"
+    // const domen = ""
 
 
     useEffect(async () => {

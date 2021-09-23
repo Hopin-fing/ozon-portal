@@ -5,8 +5,8 @@ const searchRightCabinet = (chatId, history) => {
     if(isRightChat) return isRightChat["cabinet"]
 }
 
-// const domen = "http://84.38.180.73:5000"
-const domen = ""
+const domen = "http://84.38.180.73:5000"
+// const domen = ""
 
 export const setLoading = () => ({
     type: 'SET_LOADING_CHAT',

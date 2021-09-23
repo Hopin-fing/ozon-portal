@@ -23,8 +23,8 @@ const CommandPanel = () => {
     const pricesJournal = useSelector(({products}) => products.pricesJournal);
     const allItems = useSelector(({products}) => products.allItems);
     const oldPricesJournal = pricesJournal
-    // const domen = "http://84.38.180.73:5000"
-    const domen = ""
+    const domen = "http://84.38.180.73:5000"
+    // const domen = ""
 
     const {request} = useHttp()
 
