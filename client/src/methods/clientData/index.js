@@ -15,20 +15,24 @@ const REACT_APP_WAREHOUSE_ID_NEOVISHEN__NEO_SPB = process.env.REACT_APP_WAREHOUS
 const REACT_APP_CLIENT_ID_EYE_GALLERY = process.env.REACT_APP_CLIENT_ID_EYE_GALLERY;
 const REACT_APP_API_KEY_EYE_GALLERY = process.env.REACT_APP_API_KEY_EYE_GALLERY;
 
+const REACT_APP_CLIENT_ID_CENTRALNIY_SKLAD_LENSES = process.env.REACT_APP_CLIENT_ID_CENTRALNIY_SKLAD_LENSES;
+const REACT_APP_API_KEY_CENTRALNIY_SKLAD_LENSES = process.env.REACT_APP_API_KEY_CENTRALNIY_SKLAD_LENSES;
+
+const REACT_APP_CLIENT_ID_LENSES_MSK = process.env.REACT_APP_CLIENT_ID_LENSES_MSK;
+const REACT_APP_API_KEY_LENSES_MSK = process.env.REACT_APP_API_KEY_LENSES_MSK;
+
 
 const cabinetsInfo = {
     "My_Alcon": {
         "id": REACT_APP_CLIENT_ID_MY_ALCON,
         "apiKey": REACT_APP_API_KEY_MY_ALCON,
         "warehouse": REACT_APP_API_WAREHOUSE_ID_MY_ALCON__MANEJ22
-    }
-    ,
+    },
     "Lenses_Cooper": {
         "id": REACT_APP_CLIENT_ID_LENSES_COOPER,
         "apiKey": REACT_APP_API_KEY_LENSES_COOPER,
         "warehouse": REACT_APP_WAREHOUSE_ID_LENSES_COOPER__SPB_COOPER
-    }
-    ,
+    },
     "NeoVishen":{
         "id": REACT_APP_CLIENT_ID_NEOVISHEN,
         "apiKey": REACT_APP_API_KEY_NEOVISHEN
@@ -36,6 +40,14 @@ const cabinetsInfo = {
     "Eye_Gallery":{
         "id": REACT_APP_CLIENT_ID_EYE_GALLERY,
         "apiKey": REACT_APP_API_KEY_EYE_GALLERY
+    },
+    "Centralniy_Sklad_Lenses": {
+        "id": REACT_APP_CLIENT_ID_CENTRALNIY_SKLAD_LENSES,
+        "apiKey": REACT_APP_API_KEY_CENTRALNIY_SKLAD_LENSES
+    },
+    "Lenses_Msk": {
+        "id": REACT_APP_CLIENT_ID_LENSES_MSK,
+        "apiKey": REACT_APP_API_KEY_LENSES_MSK
     }
 }
 

@@ -10,8 +10,8 @@ export const AuthPage = () => {
     const [form, setForm] = useState( {
         login: '', password: ''
     })
-    const domen = "http://84.38.180.73:5000"
-    // const domen = ""
+    // const domen = "http://84.38.180.73:5000"
+    const domen = ""
 
 
     useEffect(() => {

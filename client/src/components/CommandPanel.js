@@ -4,11 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     endLoading,
     getProductInfo, getPriceJournal,
-    getPrices,
-    importProduct, importStocks,
+    importProduct,
     openTables, resetData,
-    sendPrice, setLoading,
-    testRequest
+    sendPrice, setLoading
 } from "../redux/actions/products";
 import {useHttp} from "../hooks/http.hook";
 import moment from "moment";
@@ -25,8 +23,8 @@ const CommandPanel = () => {
     const pricesJournal = useSelector(({products}) => products.pricesJournal);
     const allItems = useSelector(({products}) => products.allItems);
     const oldPricesJournal = pricesJournal
-    const domen = "http://84.38.180.73:5000"
-    // const domen = ""
+    // const domen = "http://84.38.180.73:5000"
+    const domen = ""
 
     const {request} = useHttp()
 
@@ -293,22 +291,22 @@ const CommandPanel = () => {
 
             </div>
 
-            {/*<div className="card">*/}
-            {/*    <div className="card-action center brown lighten-5">*/}
-            {/*        {isOpen ? <button*/}
-            {/*                className="indigo waves-effect waves-light btn  darken-1"*/}
-            {/*                onClick={handlerResetData}*/}
-            {/*                disabled={isLoading}*/}
-            {/*            >Перезагрузить</button> :*/}
-            {/*            <button*/}
-            {/*                className="indigo waves-effect waves-light btn  darken-1"*/}
-            {/*                onClick={onOpenTables}*/}
-            {/*                disabled={isLoading}*/}
-            {/*            >Загрузить таблицу</button>*/}
-            {/*        }*/}
+            <div className="card">
+                <div className="card-action center brown lighten-5">
+                    {isOpen ? <button
+                            className="indigo waves-effect waves-light btn  darken-1"
+                            onClick={handlerResetData}
+                            disabled={isLoading}
+                        >Перезагрузить</button> :
+                        <button
+                            className="indigo waves-effect waves-light btn  darken-1"
+                            onClick={onOpenTables}
+                            disabled={isLoading}
+                        >Загрузить таблицу</button>
+                    }
 
-            {/*    </div>*/}
-            {/*</div>*/}
+                </div>
+            </div>
 
         </div>
 

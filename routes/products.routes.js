@@ -7,16 +7,17 @@ const router = Router()
 router.post('/get_productInfo', async (req, res) => {
     console.log("run!!!! /get_productInfo")
 
-    const url = "/v2/product/info/list"
+    const url = "v2/product/info/list"
     const headers = req.body.headers
     delete req.body.headers
     const body = req.body
 
     try{
-         await useHttp(url, headers, "POST", body)
-        return res.status(200).json({"status": 'ok'})
+        const docs = await useHttp(url, headers, "POST", body)
+        const data =  docs.data
+        return res.status(200).json(data)
     }catch (e) {
-        // console.log("message e", e)
+        console.log("message e", e)
         res.status(500).json({ "status": ' error'})
     }
 

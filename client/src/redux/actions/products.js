@@ -139,7 +139,7 @@ export const getProductInfo = (data, isNewPrice = false) => async dispatch => {
 
                 bodyRequestInfoList.offer_id = []
 
-
+                console.log("response", response)
                 filterResponseData(cabinet, response.data.result.items)
                 console.log("arrResponseData", arrResponseData)
             }
@@ -156,6 +156,7 @@ export const getProductInfo = (data, isNewPrice = false) => async dispatch => {
         }
 
         const response = await sendRequestPost(url, bodyRequestInfoList, cabinet)
+
         filterResponseData(cabinet, response.data.result.items)
 
         // arrResponseData.push(response.data.result.items)
@@ -167,15 +168,10 @@ export const getProductInfo = (data, isNewPrice = false) => async dispatch => {
         arrResponseData[Object.keys(data)[i]] = arrResponseData[Object.keys(data)[i]].flat()
     }
 
-
     if(!isNewPrice) dispatch({
         type: 'GET_PRODUCT_INFO',
         payload: {data: arrResponseData, sourcePrice: data}
     })
-    // if(isNewPrice) dispatch({
-    //     type: 'GET_NEW_PRICE',
-    //     payload: arrResponseData.flat()
-    // })
 
 
 }

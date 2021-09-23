@@ -13,8 +13,8 @@ const TableRow = ({index, offerId, id, name, price, purchasePrice, minPrice, bar
     const [isRightExitPopup, setRightExitPopup] = useState(true)
     const pricesJournal = useSelector(({products}) => products.pricesJournal)
     const loading = useSelector(({products}) => products.loading)
-    const domen = "http://84.38.180.73:5000"
-    // const domen = ""
+    // const domen = "http://84.38.180.73:5000"
+    const domen = ""
 
     const dispatch = useDispatch();
 
