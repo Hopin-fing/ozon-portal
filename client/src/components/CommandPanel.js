@@ -291,22 +291,22 @@ const CommandPanel = () => {
 
             </div>
 
-            <div className="card">
-                <div className="card-action center brown lighten-5">
-                    {isOpen ? <button
-                            className="indigo waves-effect waves-light btn  darken-1"
-                            onClick={handlerResetData}
-                            disabled={isLoading}
-                        >Перезагрузить</button> :
-                        <button
-                            className="indigo waves-effect waves-light btn  darken-1"
-                            onClick={onOpenTables}
-                            disabled={isLoading}
-                        >Загрузить таблицу</button>
-                    }
+            {/*<div className="card">*/}
+            {/*    <div className="card-action center brown lighten-5">*/}
+            {/*        {isOpen ? <button*/}
+            {/*                className="indigo waves-effect waves-light btn  darken-1"*/}
+            {/*                onClick={handlerResetData}*/}
+            {/*                disabled={isLoading}*/}
+            {/*            >Перезагрузить</button> :*/}
+            {/*            <button*/}
+            {/*                className="indigo waves-effect waves-light btn  darken-1"*/}
+            {/*                onClick={onOpenTables}*/}
+            {/*                disabled={isLoading}*/}
+            {/*            >Загрузить таблицу</button>*/}
+            {/*        }*/}
 
-                </div>
-            </div>
+            {/*    </div>*/}
+            {/*</div>*/}
 
         </div>
 
