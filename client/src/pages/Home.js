@@ -13,7 +13,7 @@ const Home = () => {
         <div>
             <div className="row">
                 <CommandPanel/>
-                <ChatPanel/>
+                {/*<ChatPanel/>*/}
             </div>
             {loading
                 ? <div className="row">

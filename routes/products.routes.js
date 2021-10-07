@@ -5,7 +5,6 @@ const router = Router()
 
 
 router.post('/get_productInfo', async (req, res) => {
-    console.log("run!!!! /get_productInfo")
 
     const url = "v2/product/info/list"
     const headers = req.body.headers

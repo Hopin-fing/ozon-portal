@@ -1,4 +1,5 @@
 import {sendRequestPost} from "../../methods/requestServer";
+import {domain} from "../../methods/clientData";
 
 
 export const setLoading = () => ({
@@ -46,7 +47,6 @@ export const importStocks = bodyRequest => async () => {
                     console.log(element)
                 }
             }
-            console.log("arrResponseData.stocks", arrResponseData.stocks)
 
             if(arrResponseData.stocks.length === 0 ) return
             await sendRequestPost(url, arrResponseData, cabinet).then(data => console.log(data.data))
@@ -231,10 +231,15 @@ export const resetData = () => ({
     type: 'RESET_DATA'
 })
 
-export const getPriceJournal = data => ({
-    type: 'GET_PRICE_JOURNAL',
-    payload: data
-})
+export const getAttrPrice = (nameModels) =>  async (dispatch) => {
+    const url = "/api/price/get_attr_price"
+    const dataPrices = await sendRequestPost(url, nameModels)
+
+    dispatch({
+        type: 'GET_ATTR_PRICE',
+        payload: dataPrices.data.docs
+    })
+}
 
 export const setNewPrice = () => ({
     type: 'SET_NEW_PRICE'

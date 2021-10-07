@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react"
 import {useHttp} from "../hooks/http.hook";
 import {AuthContext} from "../context/AuthContext";
 import {useMessage} from "../hooks/message.hook";
+import {domain} from "../methods/clientData";
 
 export const AuthPage = () => {
     const auth = useContext(AuthContext)
@@ -10,9 +11,6 @@ export const AuthPage = () => {
     const [form, setForm] = useState( {
         login: '', password: ''
     })
-    const domen = "http://84.38.180.73:5000"
-    // const domen = ""
-
 
     useEffect(() => {
         window.M.updateTextFields()
@@ -24,7 +22,7 @@ export const AuthPage = () => {
 
     const loginHandler = async () => {
         try {
-            const data = await request(`${domen}/api/auth/login`, 'POST', {...form})
+            const data = await request(`${domain}/api/auth/login`, 'POST', {...form})
             auth.login(data.token, data.userId)
         } catch (e) {}
     }

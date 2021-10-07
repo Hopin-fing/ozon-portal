@@ -5,7 +5,7 @@ const initialState = {
     productTree: [],
     listModel: {},
     allItems: [],
-    pricesJournal:[],
+    attrPrice:[],
     loading: false,
     isOpen: false,
     activePopup: false
@@ -108,7 +108,7 @@ const productsReducer = (state = initialState, action) => {
                 productTree: [],
                 listModel: {},
                 allItems: [],
-                pricesJournal:[],
+                attrPrice:[],
                 isOpen: true
             }
         }
@@ -128,8 +128,7 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 productTree: result.productTree,
-                allItems: result.allItems,
-                loading: false
+                allItems: result.allItems
             }
         }
 
@@ -230,10 +229,11 @@ const productsReducer = (state = initialState, action) => {
                 loading: false
             }
 
-        case 'GET_PRICE_JOURNAL':
+        case 'GET_ATTR_PRICE':
             return {
                 ...state,
-                pricesJournal: action.payload
+                attrPrice: action.payload,
+                loading: false
             }
 
         case 'SET_LOADING':

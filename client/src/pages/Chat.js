@@ -8,6 +8,7 @@ import LinkListChat from "../components/Link/LinkListCabinet";
 import {Link} from "react-router-dom";
 import {Loader} from "../components/Loader";
 import ButtonActiveChat from "../components/Button/ButtonActiveChat";
+import {domain} from "../methods/clientData";
 
 const Chat = memo(function Chat({match}) {
     const [messageValue, setMessageValue] = useState('');
@@ -22,14 +23,13 @@ const Chat = memo(function Chat({match}) {
     const messages = useSelector(({chat}) => chat.historyMessage);
     const dispatch = useDispatch();
     const {request} = useHttp()
-    const domen = "http://84.38.180.73:5000"
-    // const domen = ""
+
 
 
     useEffect(async () => {
         if(!urlId && !chatId) {
             dispatch(setLoading())
-            const dataHistory = await request(`${domen}/api/chat/get_chatList`)
+            const dataHistory = await request(`${domain}/api/chat/get_chatList`)
             dispatch(getListChat(dataHistory.docs))
         }
     }, [])

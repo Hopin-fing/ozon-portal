@@ -12,7 +12,7 @@ const Product =  React.memo(function Product ({match, location}) {
 
 
     const products = useSelector(({products}) => products.item);
-    const data = useSelector(({products}) => products.pricesJournal);
+    const data = useSelector(({products}) => products.attrPrice);
     const [history, setHistory] = useState( [])
     const requestCommissions = {
         "offer_id": products.offer_id,
