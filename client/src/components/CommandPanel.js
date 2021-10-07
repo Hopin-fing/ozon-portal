@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import CreateFullRequest from "../methods/ozon/import/createFullRequest";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    endLoading,
     getProductInfo, getAttrPrice,
     importProduct,
     openTables, resetData
@@ -10,7 +9,6 @@ import {
 import {useHttp} from "../hooks/http.hook";
 import moment from "moment";
 import cabinetsInfo, {domain} from "../methods/clientData";
-import {useMessage} from "../hooks/message.hook";
 
 // const data = require("../data/responseData/sourcePrices.json")
 
@@ -20,37 +18,10 @@ const CommandPanel = () => {
     const isOpen = useSelector(({products}) => products.isOpen);
     const isLoading = useSelector(({products}) => products.loading);
     const productTree = useSelector(({products}) => products.productTree);
-    const pricesJournal = useSelector(({products}) => products.attrPrice);
     const allItems = useSelector(({products}) => products.allItems);
-
-
-    const oldPricesJournal = pricesJournal
-
     const {request} = useHttp()
 
 
-    let requestJourney = []
-    let reqLog = []
-
-    const bodyRequestInfoList = {
-        "offer_id": [],
-        "product_id": [],
-        "sku": []
-    }
-
-    const testBody = {}
-
-
-    const productBody = {
-        "offer_id": "100175508539",
-        "product_id": 73438434,
-        "sku": 0
-    }
-
-    const priceBody = {
-        "page": 1,
-        "page_size": 1000
-    }
 
     useEffect(() => {
         if (allItems.length !== 0) {
@@ -100,56 +71,10 @@ const CommandPanel = () => {
 
     }
 
-    const createPrice = (element, price, oldPricesJournal = null, pricesBody) => {
-        const priceString = price.toString()
-        const oldPrice = price + Math.round(price * (12 / 100))
-        const result = {
-            "offer_id": element["offer_id"],
-            "old_price": oldPrice.toString(),
-            "premium_price": "0",
-            "price": priceString,
-            "product_id": element["id"]
-        }
-
-        const actualData = moment().format('MMMM Do YYYY, h:mm:ss a');
-        const elementPriceJournal = oldPricesJournal.find(x => x.art === element["offer_id"])
-        const dataObj = {
-            data: actualData,
-            price: priceString
-        }
-        const productObj = {
-            history: [dataObj],
-            art: element["offer_id"],
-            name: element["name"]
-        }
-        if (elementPriceJournal) {
-            elementPriceJournal["history"].push(dataObj)
-            if (elementPriceJournal["history"].length > 10) elementPriceJournal["history"] = elementPriceJournal["history"].slice(-10)
-
-        }
-        if (!elementPriceJournal) oldPricesJournal.push(productObj)
-        pricesBody.push(result)
-    }
-
-    const handlerImportRequest = () => {
-        const request = CreateFullRequest()
-        dispatch(importProduct(request))
-    }
-
     const handlerResetData = async () => {
         dispatch(resetData())
 
         await onOpenTables()
-        // dispatch(openTables())
-        // try {
-        //     const dataSourcePrice = await request(`${domain}/api/price/get_sourcePrice`)
-        //     dispatch(getProductInfo(dataSourcePrice.docs))
-        //     dispatch(getAttrPrice(Object.keys(productTree)))
-        //     dispatch(endLoading())
-        // } catch (e) {
-        //     console.log("Ошибка :", e)
-        // }
-
     }
 
 
@@ -161,17 +86,6 @@ const CommandPanel = () => {
                     <span className="card-title">Мониторинг цен по кабинетам на OZON</span>
 
                 </div>
-                {/*<div className="card-action center">*/}
-                {/*    <button*/}
-                {/*        className="yellow waves-effect waves-light btn darken-3"*/}
-                {/*        onClick={handlerSendPrices}*/}
-                {/*        disabled={!existProductTree || isLoading}*/}
-
-                {/*    >Отправить новую цену*/}
-                {/*    </button>*/}
-
-                {/*</div>*/}
-
             </div>
 
             <div className="card">
