@@ -6,20 +6,31 @@
 @import 'pages/all';
 
 
-.link-nav {
-  margin-bottom: 50px;
+
+
+.link-home, .link-nav {
+  position: absolute;
+  left: 12px;
+}
+.link-home {
+  top: 7px;
 }
 
-.link-home {
-  position: absolute;
-  top: 7px;
-  left: 12px;
+.link-nav {
+  top: 60px;
 }
 
 .link-list-chat {
   position: absolute;
   top: 60px;
   left: 12px;
+}
+
+.padding-top-50 {
+  padding-top: 50px;
+}
+.padding-top-100 {
+  padding-top: 100px ;
 }
 
 .link-home, .link-list-chat {

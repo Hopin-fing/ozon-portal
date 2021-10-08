@@ -61,4 +61,14 @@ router.post('/send_attr_price', async (req, res) => {
     }
 })
 
+router.post('/get_history', async (req, res) => {
+    try{
+        const {art, name, cabinet} = req.body,
+            docs = await Price.findOne({art, name, cabinet})
+        return res.status(200).json({docs: docs?.["history"]})
+    }catch (e) {
+        res.status(500).json({ "status": ' error'})
+    }
+})
+
 module.exports = router

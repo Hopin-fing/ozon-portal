@@ -35,11 +35,11 @@ const cabinetsInfo = {
         "apiKey": REACT_APP_API_KEY_LENSES_COOPER,
         "warehouse": REACT_APP_WAREHOUSE_ID_LENSES_COOPER__SPB_COOPER
     },
-    "NeoVishen":{
+    "NeoCosmo":{
         "id": REACT_APP_CLIENT_ID_NEOVISHEN,
         "apiKey": REACT_APP_API_KEY_NEOVISHEN
     },
-    "Eye_Gallery":{
+    "EyeGallery":{
         "id": REACT_APP_CLIENT_ID_EYE_GALLERY,
         "apiKey": REACT_APP_API_KEY_EYE_GALLERY
     },

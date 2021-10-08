@@ -2,11 +2,7 @@ const {Router} = require('express')
 const useHttp = require('../serverMethods/httpRequest')
 const Product = require('../models/Product')
 const router = Router()
-
-
-router.post('/get_productInfo', async (req, res) => {
-
-    const url = "v2/product/info/list"
+const doReq = async  (url, req, res) => {
     const headers = req.body.headers
     delete req.body.headers
     const body = req.body
@@ -19,6 +15,20 @@ router.post('/get_productInfo', async (req, res) => {
         console.log("message e", e)
         res.status(500).json({ "status": ' error'})
     }
+}
+
+
+router.post('/get_productInfo', async (req, res) => {
+
+    const url = "v2/product/info/list"
+    return doReq(url, req, res)
+
+})
+
+router.post('/get_commission', async (req, res) => {
+
+    const url = "v2/product/info"
+    return doReq(url, req, res)
 
 })
 

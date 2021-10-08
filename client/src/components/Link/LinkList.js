@@ -6,7 +6,7 @@ const LinkHome = ({model}) => {
         <div className="row">
             <div className="col s8 offset-s2 text-center">
                 <Link to={`/list/${model}`}>
-                    <div className="link-home">К списку модели</div>
+                    <div className="link-nav #ec407a pink lighten-1 waves-light btn">К списку модели</div>
                 </Link>
             </div>
 

@@ -166,7 +166,7 @@ const productsReducer = (state = initialState, action) => {
             }
         }
 
-        case 'GET_COMMISSIONS':
+        case 'GET_COMMISSIONS': {
 
             const item = {...state.item}
 
@@ -175,6 +175,18 @@ const productsReducer = (state = initialState, action) => {
                 ...state,
                 item: item
             }
+        }
+
+        case 'GET_HISTORY': {
+            const item = {...state.item}
+            item["history"] = action.payload
+            return {
+                ...state,
+                item,
+            }
+        }
+
+
 
         case 'SEND_PRICE':
             const allItems = [...state.allItems]
@@ -226,7 +238,6 @@ const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 item: objProduct,
-                loading: false
             }
 
         case 'GET_ATTR_PRICE':

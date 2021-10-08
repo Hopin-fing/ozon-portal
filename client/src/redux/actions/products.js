@@ -1,6 +1,4 @@
 import {sendRequestPost} from "../../methods/requestServer";
-import {domain} from "../../methods/clientData";
-
 
 export const setLoading = () => ({
     type: 'SET_LOADING'
@@ -10,10 +8,9 @@ export const endLoading = () => ({
     type: 'END_LOADING'
 })
 
-export const getCommissions = bodyRequest => async dispatch => {
-    const url = "https://api-seller.ozon.ru/v2/product/info"
-    const response = await sendRequestPost(url, bodyRequest)
-
+export const getCommissions = (bodyRequest,cabinet) => async dispatch => {
+    const url = "/api/ozon/get_commission"
+    const response = await sendRequestPost(url, bodyRequest, cabinet)
     dispatch({
         type: 'GET_COMMISSIONS',
         payload: response.data.result
@@ -24,7 +21,6 @@ export const getCommissions = bodyRequest => async dispatch => {
 export const testRequest = bodyRequest => async () => {
     const url = "https://api-seller.ozon.ru/v1/warehouse/list"
     await sendRequestPost(url, bodyRequest).then(data => console.log(data.data))
-
 }
 
 export const importStocks = bodyRequest => async () => {
@@ -111,7 +107,7 @@ export const importProduct = bodyRequest => async dispatch => {
 export const getProductInfo = (data, isNewPrice = false) => async dispatch => {
     dispatch(setLoading())
 
-    const url = "/api/product/get_productInfo"
+    const url = "/api/ozon/get_productInfo"
     const arrResponseData = {
     }
     const bodyRequestInfoList = {
@@ -176,6 +172,21 @@ export const getProductInfo = (data, isNewPrice = false) => async dispatch => {
 
 }
 
+export const getHistory = products => async (dispatch) => {
+    dispatch(setLoading())
+    const url = "/api/price/get_history",
+        art = products.offer_id,
+        name = products.name,
+        cabinet = products.cabinet,
+        objReq = {art, name, cabinet},
+        response = await sendRequestPost(url, objReq),
+        data = response.data.docs || []
+    dispatch({
+        type: 'GET_HISTORY',
+        payload: data
+    })
+
+}
 
 export const getPrices = () => ({
     type: 'GET_PRICES'
@@ -219,7 +230,6 @@ export const sendPrice = (bodyRequest, countRequest = "single") =>  async (dispa
     }
     if(countRequest === "single") dispatch(endLoading())
     if (!response.data.result[0].updated) {console.log("Что то произошло не так!")}
-
 
 }
 
