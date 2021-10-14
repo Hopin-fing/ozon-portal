@@ -51,13 +51,12 @@ const addProductInfo = (allItems, productTree, data , state, arrPrices) => {
                         const name = checkingObj["name"]
                         const currentPrice = parseInt(checkingObj["price"])
                         const isExpensive = overPriceDB.find(item => name.includes(item))
-                        const overPrice = isExpensive ? 500  : 100
+                        const overPrice = isExpensive ? 500  : 50
 
                         checkingObj["price"] = currentPrice
                         let commission = Math.ceil(20 + 45 + currentPrice/100*5 + currentPrice/100*4.4 + (currentPrice-purchasePrice)/100*3)
                         checkingObj["balance"] = Number(addAtrDB(checkingObj)["balance"])
                         checkingObj["cabinet"] = nameCabinet
-                        checkingObj["income"] = checkingObj["price"] - checkingObj["purchasePrice"] - commission
                         checkingObj["minPrice"] = checkingObj["purchasePrice"] + commission + overPrice
                         if(addAtrDB(checkingObj)["oldPrice"] !== null ) {
                             checkingObj["oldPrice"] = checkingObj["price"] === Number(addAtrDB(checkingObj)["oldPrice"])

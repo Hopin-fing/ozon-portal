@@ -13,7 +13,7 @@ const TableRow = ({index, offerId, id, name, price, minPrice, barcode, balance, 
             <td>{barcode}</td>
             <td>{price}</td>
             <td>{minPrice}</td>
-            <td>{balance}</td>
+            <td>{balance ? balance : 0}</td>
 
             <td>
                 <Link to={{pathname:`/product/` + id, model: url}}>

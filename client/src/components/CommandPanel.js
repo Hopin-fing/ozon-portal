@@ -21,8 +21,6 @@ const CommandPanel = () => {
     const allItems = useSelector(({products}) => products.allItems);
     const {request} = useHttp()
 
-
-
     useEffect(() => {
         if (allItems.length !== 0) {
             const objStocks = {}

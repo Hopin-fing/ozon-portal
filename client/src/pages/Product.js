@@ -29,8 +29,12 @@ const Product =  React.memo(function Product ({match, location}) {
 
 
     useEffect(() => {
-        if(!products.history) dispatch(getHistory(products))
-        if(products.history && products.offer_id) {
+        if(!products.history)  {
+            console.log("run")
+            dispatch(getHistory(products))
+        }
+        if(products.history && Object.keys(products.history).length > 0 && products.offer_id) {
+
             const objHistory = products,
                 result = [],
                 cabinet = products.cabinet
@@ -39,13 +43,28 @@ const Product =  React.memo(function Product ({match, location}) {
 
             if (objHistory) objHistory.history.forEach( element => {
                 result.push(element)
-                setHistory(result)
+                setHistory(result.reverse())
             })
             dispatch(endLoading())
 
         }
 
     }, [products.history])
+
+    const causeString = item => {
+        let result = "Причина изменения: " +
+            (item["hasFBO"] ? "FBO-FBS, " : "") +
+            (item["overprice"] ? "наценка, " : "") +
+            (item["pricePackage"] ? "цена упаковки, " : "") +
+                (item["compPrice"] ? "изменение цены у конкурентов, " : "")
+        result = result.replace(/, $/, ".")
+        return (!item["hasFBO"]
+            && !item["overprice"]
+            && !item["pricePackage"]
+            && !item["compPrice"]
+        ) ? false : result
+
+    }
 
 
     return (
@@ -67,7 +86,7 @@ const Product =  React.memo(function Product ({match, location}) {
                             <ul className="collection">
                                 {history.length !== 0
                                     ? history.map((item, index) => {
-                                        return <li key={`product-history-${index}`} className="collection-item">{item.data} - {item.price} р. {item.cause ? item.cause : "--"}</li>
+                                        return <li key={`product-history-${index}`} className="collection-item">{item.data} - {item.price} р. {item.cause ? causeString(item.cause) : "--"}</li>
                                     })
                                     :  <li className="collection-item">Изменений цены не было</li>
                                 }
@@ -80,13 +99,9 @@ const Product =  React.memo(function Product ({match, location}) {
                     <div className="col s6 text-center">
                         <img src={products.images ? products.images[0] : urlEmptyImg} alt="test" style={{width: "350px"}}/>
                         <ul>
-                            <li>Атрибут: {products.id}</li>
+                            <li>Артикул: {products.id}</li>
                             <li>Наименование: {products.name}</li>
                             <li>Цена: {`${parseInt(products.price)} р.`}</li>
-                            <li>Коммиссия: {products.commissions
-                                ?`${parseInt(products.commissions[0].value)} р.`
-                                : ""
-                            }</li>
                         </ul>
                     </div>
                 </div>

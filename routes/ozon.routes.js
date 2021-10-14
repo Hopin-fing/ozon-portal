@@ -1,6 +1,5 @@
 const {Router} = require('express')
-const useHttp = require('../serverMethods/httpRequest')
-const Product = require('../models/Product')
+const {useHttp} = require('../serverMethods/httpRequest')
 const router = Router()
 const doReq = async  (url, req, res) => {
     const headers = req.body.headers

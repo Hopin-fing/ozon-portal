@@ -179,8 +179,9 @@ export const getHistory = products => async (dispatch) => {
         name = products.name,
         cabinet = products.cabinet,
         objReq = {art, name, cabinet},
-        response = await sendRequestPost(url, objReq),
-        data = response.data.docs || []
+        response = await sendRequestPost(url, objReq)
+        // console.log("response", response)
+    const data = response.data.docs || []
     dispatch({
         type: 'GET_HISTORY',
         payload: data

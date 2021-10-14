@@ -4,7 +4,7 @@ const router = Router()
 const path = require("path")
 const getChatListPath = path.resolve("serverMethods/getChatInfo/getChatList")
 const getChatList = require(getChatListPath)
-const useHttp = require("../serverMethods/httpRequest")
+const {useHttp} = require("../serverMethods/httpRequest")
 const markRead = require("../serverMethods/getChatInfo/markRead")
 
 const getHeads = req => {
