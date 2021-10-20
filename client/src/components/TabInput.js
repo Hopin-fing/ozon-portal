@@ -1,10 +1,11 @@
-import {Link} from "react-router-dom";
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
 import moment from "moment";
+import {chgAttrPrice} from "../redux/actions/products";
+import {useDispatch} from "react-redux";
 
-const TabInput = ({priceValue, keyValue, name, funcReq, loading }) => {
+const TabInput = ({priceValue, keyValue, name, funcReq, loading, cabinet }) => {
 
+    const dispatch = useDispatch();
     const [value, setValue] = useState(priceValue)
     const [isActiveInput, setInput] = useState(false)
     const [isRightExitPopup, setRightExitPopup] = useState(true)
@@ -14,9 +15,11 @@ const TabInput = ({priceValue, keyValue, name, funcReq, loading }) => {
         if(event.key !== 'Enter') return
 
         if(value.toString().trim()) {
-            const actualData = moment().format('MMMM Do YYYY, H:mm:ss')
-            await funcReq(keyValue, value, name.replace(/_/g, " "))
-
+            name = name.replace(/_/g, " ")
+            cabinet = cabinet.replace(/_/g, " ")
+            await funcReq(keyValue, value, name)
+            const valueNumb = parseInt(value, 10)
+            dispatch(chgAttrPrice(cabinet,name,valueNumb,keyValue))
             setInput(false)
         }
 

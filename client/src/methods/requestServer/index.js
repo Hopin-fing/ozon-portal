@@ -1,7 +1,6 @@
 import axios from "axios";
 import cabinetsInfo from "../../methods/clientData";
 import axiosRetry from "axios-retry";
-import {useMessage} from "../../hooks/message.hook";
 
 axiosRetry(axios, { retries: 200 });
 

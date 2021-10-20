@@ -33,9 +33,9 @@ const Tabs = ({productTree} ) => {
                      {newProductTree[reversKeys[active]]
                      && <TabContent title = {reversKeys[active]}
                                  cabinetInfo = {newProductTree[reversKeys[active]]}
+                                    cabinet = {reversKeys[active]}
                      />}
 
-                     {/*<Pagination totalRecords={products.result.items.length} />*/}
                  </div>
 
 

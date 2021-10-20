@@ -2,7 +2,6 @@ import React from 'react';
 import CommandPanel from "../components/CommandPanel";
 import Tabs from "../components/Tabs";
 import {useSelector} from "react-redux";
-import ChatPanel from "../components/ChatPanel";
 import {Loader} from "../components/Loader";
 
 const Home = () => {

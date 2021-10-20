@@ -4,18 +4,19 @@ const initialState = {
     item: {},
     productTree: [],
     listModel: {},
-    allItems: [],
     attrPrice:[],
     loading: false,
     isOpen: false,
     activePopup: false
 }
 
-const addProductInfo = (allItems, productTree, data , state, arrPrices) => {
+const addProductInfo = (data , arrPrices) => {
+    const generalStorage = []
+    const productTree = []
 
     const filterData = nameCabinet => {
         data[nameCabinet].forEach(item => {
-            allItems.push(item)
+            generalStorage.push(item)
             if(!("check" in item)) {
                 const addAtrDB = obj => {
 
@@ -46,8 +47,7 @@ const addProductInfo = (allItems, productTree, data , state, arrPrices) => {
                     const checkingName =  checkingObj.name.replace(/,.*$/, "").trim().replace(/ /g, "_")
                     if(originalName === checkingName) {
 
-                        checkingObj["purchasePrice"] = Number(addAtrDB(checkingObj)["buyingPrice"])
-                        const purchasePrice = checkingObj["purchasePrice"]
+                        const purchasePrice = Number(addAtrDB(checkingObj)["buyingPrice"])
                         const name = checkingObj["name"]
                         const currentPrice = parseInt(checkingObj["price"])
                         const isExpensive = overPriceDB.find(item => name.includes(item))
@@ -57,23 +57,24 @@ const addProductInfo = (allItems, productTree, data , state, arrPrices) => {
                         let commission = Math.ceil(20 + 45 + currentPrice/100*5 + currentPrice/100*4.4 + (currentPrice-purchasePrice)/100*3)
                         checkingObj["balance"] = Number(addAtrDB(checkingObj)["balance"])
                         checkingObj["cabinet"] = nameCabinet
-                        checkingObj["minPrice"] = checkingObj["purchasePrice"] + commission + overPrice
-                        if(addAtrDB(checkingObj)["oldPrice"] !== null ) {
-                            checkingObj["oldPrice"] = checkingObj["price"] === Number(addAtrDB(checkingObj)["oldPrice"])
-                                ? null
-                                : addAtrDB(checkingObj)["oldPrice"].toString()
-                        }
+                        // checkingObj["minPrice"] = checkingObj["purchasePrice"] + commission + overPrice
+                        // if(addAtrDB(checkingObj)["oldPrice"] !== null ) {
+                        //     checkingObj["oldPrice"] = checkingObj["price"] === Number(addAtrDB(checkingObj)["oldPrice"])
+                        //         ? null
+                        //         : addAtrDB(checkingObj)["oldPrice"].toString()
+                        // }
                         checkingObj["check"] = true
+
                         return true
                     }
                     return false
                 }
                 const name = item.name.replace(/,.*$/, "").trim().replace(/ /g, "_")
-                if(productTree[nameCabinet] && productTree[nameCabinet][name]) return  productTree[nameCabinet][name] = data[nameCabinet].filter(checkingName =>
-                    isEqualName(name, checkingName ))
-                    .concat(...state.productTree[name]) // сложение с предыдущим вызовом
-                if(!productTree[nameCabinet]) productTree[nameCabinet] = {}
-                productTree[nameCabinet][name] = data[nameCabinet].filter(checkingName => isEqualName(name, checkingName ))
+                // if(productTree?.[nameCabinet][name]) return  productTree[nameCabinet][name] = data[nameCabinet].filter(checkingName =>
+                //     isEqualName(name, checkingName ))
+                //     .concat(...state.productTree[name]) // сложение с предыдущим вызовом
+                // if(!productTree[nameCabinet]) productTree[nameCabinet] = {}
+                // productTree[nameCabinet][name] = data[nameCabinet].filter(checkingName => isEqualName(name, checkingName ))
             }
         })
     }
@@ -85,7 +86,7 @@ const addProductInfo = (allItems, productTree, data , state, arrPrices) => {
 
 
     return{
-        allItems,
+        generalStorage,
         productTree
     }
 
@@ -106,7 +107,6 @@ const productsReducer = (state = initialState, action) => {
                 item: {},
                 productTree: [],
                 listModel: {},
-                allItems: [],
                 attrPrice:[],
                 isOpen: true
             }
@@ -118,16 +118,23 @@ const productsReducer = (state = initialState, action) => {
             }
         }
 
-        case 'GET_PRODUCT_INFO': {
-            const {data, sourcePrice} = action.payload
-            const allItems = [...state.allItems]
-            const productTree = {...state.productTree}
-            const result = addProductInfo(allItems, productTree, data, state, sourcePrice )
+        case 'CHANGE_ATTR_PRICE': {
+            const {cabinet, model, value, nameAttr} = action.payload
+            const attrPrice = {...state.attrPrice}
+            attrPrice[cabinet][model][nameAttr] = value
 
             return {
                 ...state,
-                productTree: result.productTree,
-                allItems: result.allItems
+                attrPrice: attrPrice
+            }
+        }
+
+        case 'GET_PRODUCT_TREE': {
+
+            return {
+                ...state,
+                productTree: action.payload
+                // allItems: result.allItems
             }
         }
 
@@ -138,29 +145,16 @@ const productsReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                productTree: result.productTree,
-                allItems: result.allItems,
+                productTree: result.productTree
             }
         }
 
         case 'GET_LIST_MODEL': {
-            let arrModels, rightModel
-            Object.keys(state.productTree).map( nameCabinet => {
-                const result = Object.keys(state.productTree[nameCabinet]).find(item => action.payload === item)
-                if(result)  {
-                    rightModel = state.productTree[nameCabinet][result]
-                }
-            })
-            try{
-                arrModels = rightModel
-            }catch (e) {
-                console.log("Сообщение об ошибке:", e)
-            }
-
+            console.log("listModel:",  action.payload)
 
             return {
                 ...state,
-                listModel: arrModels,
+                listModel: action.payload,
                 loading: false
             }
         }
@@ -187,32 +181,32 @@ const productsReducer = (state = initialState, action) => {
 
 
 
-        case 'SEND_PRICE':
-            const allItems = [...state.allItems]
-            const productTree = {...state.productTree}
-            const objRequest = action.payload
-
-
-
-            const objAllItems =  allItems.find( x => x["offer_id"] === objRequest["offer_id"])
-            let objProductTree
-
-            Object.keys(productTree).map(nameCabinet => {
-                for( let key in productTree[nameCabinet]) {
-                    const result = productTree[nameCabinet][key].find( x => x["offer_id"] === objRequest["offer_id"])
-                    if(result) objProductTree = result
-                }
-            })
-
-            objAllItems.price = Number(objRequest["price"])
-            objProductTree.price = Number(objRequest["price"])
-
-            return {
-                ...state,
-                allItems,
-                productTree,
-                loading: true
-            }
+        // case 'SEND_PRICE':
+        //     const allItems = [...state.allItems]
+        //     const productTree = {...state.productTree}
+        //     const objRequest = action.payload
+        //
+        //
+        //
+        //     const objAllItems =  allItems.find( x => x["offer_id"] === objRequest["offer_id"])
+        //     let objProductTree
+        //
+        //     Object.keys(productTree).map(nameCabinet => {
+        //         for( let key in productTree[nameCabinet]) {
+        //             const result = productTree[nameCabinet][key].find( x => x["offer_id"] === objRequest["offer_id"])
+        //             if(result) objProductTree = result
+        //         }
+        //     })
+        //
+        //     objAllItems.price = Number(objRequest["price"])
+        //     objProductTree.price = Number(objRequest["price"])
+        //
+        //     return {
+        //         ...state,
+        //         allItems,
+        //         productTree,
+        //         loading: true
+        //     }
 
 
         case 'GET_PRICES':

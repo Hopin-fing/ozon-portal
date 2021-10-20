@@ -1,16 +1,10 @@
 import React, {useEffect} from 'react';
-import CreateFullRequest from "../methods/ozon/import/createFullRequest";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    getProductInfo, getAttrPrice,
-    importProduct,
-    openTables, resetData
-} from "../redux/actions/products";
+import { getAttrPrice, openTables, resetData,
+    setLoading, getProductTree} from "../redux/actions/products";
 import {useHttp} from "../hooks/http.hook";
-import moment from "moment";
-import cabinetsInfo, {domain} from "../methods/clientData";
+import {domain} from "../methods/clientData";
 
-// const data = require("../data/responseData/sourcePrices.json")
 
 const CommandPanel = () => {
 
@@ -18,51 +12,34 @@ const CommandPanel = () => {
     const isOpen = useSelector(({products}) => products.isOpen);
     const isLoading = useSelector(({products}) => products.loading);
     const productTree = useSelector(({products}) => products.productTree);
-    const allItems = useSelector(({products}) => products.allItems);
     const {request} = useHttp()
 
-    useEffect(() => {
-        if (allItems.length !== 0) {
-            const objStocks = {}
-            allItems.forEach(item => {
-                    const offerId = item["offer_id"]
-                    const productId = item["id"]
-                    const stock = item["balance"]
-                    const stockOzon = item["stocks"]["present"]
-                    const cabinet = item["cabinet"]
-                    const result = {
-                        "product_id": productId,
-                        "offer_id": offerId,
-                        "stock": stock,
-                        "warehouse_id": cabinetsInfo[cabinet]["warehouse"]
-                    }
-                    if (!objStocks.hasOwnProperty(cabinet)) objStocks[cabinet] = []
-                    if (stock !== stockOzon) objStocks[cabinet].push(result)
-                }
-            )
-
-        }
-    }, [allItems])
-
-    useEffect(async () => {if(productTree.length !== 0) await getAttrPriceFunc()
+    useEffect(async () => {
+        if(productTree.length !== 0) await getAttrPriceFunc()
     }, [productTree])
 
 
     const getAttrPriceFunc = async () => {
         const cabinets = Object.keys(productTree)
-        let nameModels = []
-        const bodyReq = []
-        cabinets.forEach(cabinet => {nameModels.push(Object.keys(productTree[cabinet]))})
-        nameModels = nameModels.flat()
-        nameModels.forEach(nameModel => {bodyReq.push(nameModel.replaceAll("_", " "))})
+        let bodyReq = {}
+        cabinets.forEach(cabinet => {
+            const clrCabinet = cabinet.replaceAll(/_/g, " ")
+            const clrNamesModel= []
+            Object.keys(productTree[cabinet]).forEach(nameModels => {
+                clrNamesModel.push(nameModels.replaceAll(/_/g, " "))
+            })
+            bodyReq[clrCabinet] = clrNamesModel
+        })
         dispatch(getAttrPrice(bodyReq))
     }
 
     const onOpenTables = async () => {
         dispatch(openTables())
         try {
-            const dataSourcePrice = await request(`${domain}/api/price/get_sourcePrice`)
-            await dispatch(getProductInfo(dataSourcePrice.docs))
+            dispatch(setLoading())
+            const dataProdTree = await request(`${domain}/api/product/get_productTree`)
+            // const dataProdTree = await request(`${domain}/api/product/write_genStorage`)
+            await dispatch(getProductTree(dataProdTree.docs))
         } catch (e) {
             console.log("Ошибка :", e)
         }
@@ -71,7 +48,6 @@ const CommandPanel = () => {
 
     const handlerResetData = async () => {
         dispatch(resetData())
-
         await onOpenTables()
     }
 

@@ -12,7 +12,6 @@ const TableRow = ({index, offerId, id, name, price, minPrice, barcode, balance, 
             <td>{name}</td>
             <td>{barcode}</td>
             <td>{price}</td>
-            <td>{minPrice}</td>
             <td>{balance ? balance : 0}</td>
 
             <td>

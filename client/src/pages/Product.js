@@ -5,7 +5,7 @@ import LinkHome from "../components/Link/LinkHome";
 import LinkList from "../components/Link/LinkList";
 import {Loader} from "../components/Loader";
 
-const Product =  React.memo(function Product ({match, location}) {
+const Product = ({match, location}) => {
 
     const dispatch = useDispatch();
     const urlId = match.params.name
@@ -25,14 +25,15 @@ const Product =  React.memo(function Product ({match, location}) {
         dispatch(setLoading())
         dispatch(getProduct(urlId))
     }, [])
+    useEffect(() => {
+        if(Object.keys(products).length > 0 && !products.history)  {
+            dispatch(getHistory(products))
+        }
+    }, [products])
 
 
 
     useEffect(() => {
-        if(!products.history)  {
-            console.log("run")
-            dispatch(getHistory(products))
-        }
         if(products.history && Object.keys(products.history).length > 0 && products.offer_id) {
 
             const objHistory = products,
@@ -110,6 +111,6 @@ const Product =  React.memo(function Product ({match, location}) {
         </div>
         </>
     );
-});
+};
 
 export default Product;

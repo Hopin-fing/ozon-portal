@@ -7,10 +7,11 @@ import {useSelector} from "react-redux";
 import {useMessage} from "../hooks/message.hook";
 import {useHttp} from "../hooks/http.hook";
 
-const TabContent = ({ title, cabinetInfo, overprice = 50, packagePrice = 20 }) => {
+const TabContent = ({ title, cabinetInfo, cabinet }) => {
 
 
     const [loadingField, setLoadingField] = useState(false)
+    const productTree = useSelector(({products}) => products.productTree)
     const titleClear = title.replace("_", " ")
     const overpriceDef = 50
     const packageDef = 20
@@ -24,14 +25,6 @@ const TabContent = ({ title, cabinetInfo, overprice = 50, packagePrice = 20 }) =
 
     const attrPrice = useSelector(({products}) => products.attrPrice);
 
-    const minPrice = arrModels => {
-        let arrPrices = []
-        arrModels.forEach(model => {
-            arrPrices.push(model["price"])
-        })
-
-        return Math.min.apply(null, arrPrices)
-    }
     const crtServReq =  async (keyValue, value, name) => {
         const objReq = {
             [keyValue]: value,
@@ -44,47 +37,25 @@ const TabContent = ({ title, cabinetInfo, overprice = 50, packagePrice = 20 }) =
         message("Изменения вступят в силу в течение часа")
     }
 
-    const averagePrice = arrPrice => {
-        const count = arrPrice.length
-        const sum = sumPriceModels(arrPrice)
-        return Math.floor(sum/count)
+    const getAttr = (cabinet, model) => {
 
-    }
-
-    const getAttr = model => {
-        const resultObj = attrPrice[model.replace(/_/g, " ")]
+        const resultObj = attrPrice[cabinet.replace(/_/g, " ")][model.replace(/_/g, " ")]
         const overprice = resultObj?.["overprice"] ? resultObj["overprice"] : overpriceDef
         const pricePackage = resultObj?.["package"] ? resultObj["package"] : packageDef
 
         return {overprice, "package" : pricePackage}
     }
 
-    const sumPriceModels = arrModels => {
-        let sum = 0
-        arrModels.forEach(model => {
-            sum += model.price
-        })
-        return sum
-    }
-
-    const maxPurchasePrice = arrModels => {
-        let arrPrices = []
-        arrModels.forEach(model => {
-            arrPrices.push(model["purchasePrice"])
-        })
-        return Math.max.apply(null, arrPrices)
-    }
-
    return (
 
     <div className="tab-content">
         <h4>{titleClear}</h4>
+
         <table className="striped centered">
             <thead>
             <tr>
                 <th>Название товара</th>
                 <th>Средняя цена за модель</th>
-                <th>Максимальная закупочная цена </th>
                 <th>Цена за упаковку </th>
                 <th>Наценка </th>
                 <th>Минимальная цена</th>
@@ -92,37 +63,76 @@ const TabContent = ({ title, cabinetInfo, overprice = 50, packagePrice = 20 }) =
 
             </tr>
             </thead>
-
             <tbody>
-            {Object.keys(cabinetInfo).map((item,index) =>
+            {titleClear === "All Models"
+                ? Object.keys(productTree).map((cabinet,index) =>
+                    <React.Fragment  key={`cabinet_${index}`}>
+                        <tr>
+                            <td colSpan="6">{cabinet.replace(/_/g, " ")}</td>
+
+                        </tr>
+
+                            {Object.keys(productTree[cabinet]).map((item,index) =>
+                                <tr key={`model_${index}`}>
+                                    <td>{item.replace(/_/g, " ")}</td>
+                                    <td>{`${cabinetInfo[item]["averPrice"]} р.`}</td>
+                                    <TabInput priceValue = {getAttr(cabinet, item)["overprice"]}
+                                              keyValue = {"overprice"}
+                                              name = {item}
+                                              funcReq = {crtServReq}
+                                              loading = {loadingField}
+                                              cabinet={cabinet}
+                                    />
+                                    <TabInput priceValue = {getAttr(cabinet, item)["package"]}
+                                              keyValue = {"package"}
+                                              name = {item}
+                                              funcReq = {crtServReq}
+                                              loading = {loadingField}
+                                              cabinet={cabinet}
+                                    />
+
+                                    <td>{`${cabinetInfo[item]["minPrice"]} р.`}</td>
+                                    <td>
+                                        <Link to={`/list/` + item + ":" + cabinet}>
+
+                                            <i className="material-icons">chevron_right</i>
+                                        </Link>
+                                    </td>
+                                </tr>
+                            )
+                            }
+                    </React.Fragment>
+                ) :
+                Object.keys(cabinetInfo).map((item,index) =>
                 <tr key={`model_${index}`}>
                     <td>{item.replace(/_/g, " ")}</td>
-                    <td>{`${averagePrice(cabinetInfo[item])} р.`}</td>
-                    <td>{`${maxPurchasePrice(cabinetInfo[item])} р.`}</td>
-                    <TabInput priceValue = {getAttr(item)["overprice"]}
+                    <td>{`${cabinetInfo[item]["averPrice"]} р.`}</td>
+                    <TabInput priceValue = {getAttr(titleClear, item)["overprice"]}
                               keyValue = {"overprice"}
                               name = {item}
                               funcReq = {crtServReq}
                               loading = {loadingField}
+                              cabinet={titleClear}
                     />
-                    <TabInput priceValue = {getAttr(item)["package"]}
+                    <TabInput priceValue = {getAttr(titleClear, item)["package"]}
                               keyValue = {"package"}
                               name = {item}
                               funcReq = {crtServReq}
                               loading = {loadingField}
+                              cabinet={titleClear}
                     />
 
-                    <td>{`${minPrice(cabinetInfo[item])} р.`}</td>
+                    <td>{`${cabinetInfo[item]["minPrice"]} р.`}</td>
                     <td>
-                        <Link to={`/list/` + item}>
-                            <i className="material-icons">chevron_right</i>
+                        <Link to={ `/list/` + item + "?" + title} >
+                            <i  className="material-icons">chevron_right</i>
                         </Link>
                     </td>
                 </tr>
-            )
-            }
+            )}
             </tbody>
         </table>
+
     </div>
 )};
 

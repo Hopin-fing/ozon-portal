@@ -18,6 +18,14 @@ export const getCommissions = (bodyRequest,cabinet) => async dispatch => {
 
 }
 
+export const getProductTree = (data) => async dispatch => {
+    dispatch({
+        type: 'GET_PRODUCT_TREE',
+        payload: data
+    })
+
+}
+
 export const testRequest = bodyRequest => async () => {
     const url = "https://api-seller.ozon.ru/v1/warehouse/list"
     await sendRequestPost(url, bodyRequest).then(data => console.log(data.data))
@@ -104,69 +112,12 @@ export const importProduct = bodyRequest => async dispatch => {
 
 }
 
-export const getProductInfo = (data, isNewPrice = false) => async dispatch => {
+export const crtProductTree = data => async dispatch => {
     dispatch(setLoading())
 
-    const url = "/api/ozon/get_productInfo"
-    const arrResponseData = {
-    }
-    const bodyRequestInfoList = {
-        "offer_id": [],
-        "product_id": [],
-        "sku": []
-    }
-    const filterResponseData = (nameCabinet, element) => {
-
-        Object.keys(arrResponseData).includes(nameCabinet)
-            ? arrResponseData[nameCabinet].push(element)
-            : arrResponseData[nameCabinet] = [element]
-    }
-
-    const filterCabinet = async cabinet => {
-        bodyRequestInfoList.offer_id = []
-
-        for(let [index, element] of Object.entries(data[cabinet])) {
-            index = Number(index)
-            if(index % 999 === 0 && index !== 0) {
-                // console.log("bodyRequestInfoList", bodyRequestInfoList)
-                const response = await sendRequestPost(url, bodyRequestInfoList, cabinet)
-
-                console.log("response 999")
-
-                bodyRequestInfoList.offer_id = []
-
-                console.log("response", response)
-                filterResponseData(cabinet, response.data.result.items)
-                console.log("arrResponseData", arrResponseData)
-            }
-
-            try {
-                bodyRequestInfoList.offer_id.push(element.art.toString())
-
-            }catch (e) {
-                console.log(e)
-                console.log("element", element)
-            }
-
-
-        }
-
-        const response = await sendRequestPost(url, bodyRequestInfoList, cabinet)
-
-        filterResponseData(cabinet, response.data.result.items)
-
-        // arrResponseData.push(response.data.result.items)
-
-    }
-
-    for(let i=0; Object.keys(data).length > i ; i++) {
-        await filterCabinet(Object.keys(data)[i])
-        arrResponseData[Object.keys(data)[i]] = arrResponseData[Object.keys(data)[i]].flat()
-    }
-
-    if(!isNewPrice) dispatch({
-        type: 'GET_PRODUCT_INFO',
-        payload: {data: arrResponseData, sourcePrice: data}
+    dispatch({
+        type: 'CREATE_PRODUCT_TREE',
+        payload: data
     })
 
 
@@ -178,9 +129,12 @@ export const getHistory = products => async (dispatch) => {
         art = products.offer_id,
         name = products.name,
         cabinet = products.cabinet,
-        objReq = {art, name, cabinet},
-        response = await sendRequestPost(url, objReq)
-        // console.log("response", response)
+        objReq = {art, name, cabinet}
+        console.log("objReq", objReq)
+
+        const response = await sendRequestPost(url, objReq)
+
+        console.log("response", response)
     const data = response.data.docs || []
     dispatch({
         type: 'GET_HISTORY',
@@ -194,45 +148,45 @@ export const getPrices = () => ({
 
 })
 
-export const sendPrice = (bodyRequest, countRequest = "single") =>  async (dispatch) =>{
-    dispatch(setLoading())
-    const url = "https://api-seller.ozon.ru/v1/product/import/prices"
-    const arrResponseData = {"prices" : []}
-    let payload = []
-    let response
-
-    console.log("price bodyRequest", bodyRequest)
-    for(const [index, element] of Object.entries(bodyRequest)) {
-        if(index % 999 === 0 && index !== 0) {
-            await sendRequestPost(url, arrResponseData)
-
-            arrResponseData.prices = []
-        }
-        try{
-            arrResponseData.prices.push(element)
-        }catch (e) {
-            console.log("Ошибка ", element)
-        }
-    }
-
-    if(countRequest === "single") response = await sendRequestPost(url, arrResponseData, Object.keys(bodyRequest)[0] )
-
-    Object.keys(bodyRequest).forEach(item => {
-        payload.push(bodyRequest[item])
-    })
-
-
-    if (response.data.result[0].updated) {
-        dispatch({
-            type: 'SEND_PRICE',
-            payload: payload[0]
-        })
-        console.log("Цена обновилась!")
-    }
-    if(countRequest === "single") dispatch(endLoading())
-    if (!response.data.result[0].updated) {console.log("Что то произошло не так!")}
-
-}
+// export const sendPrice = (bodyRequest, countRequest = "single") =>  async (dispatch) =>{
+//     dispatch(setLoading())
+//     const url = "https://api-seller.ozon.ru/v1/product/import/prices"
+//     const arrResponseData = {"prices" : []}
+//     let payload = []
+//     let response
+//
+//     console.log("price bodyRequest", bodyRequest)
+//     for(const [index, element] of Object.entries(bodyRequest)) {
+//         if(index % 999 === 0 && index !== 0) {
+//             await sendRequestPost(url, arrResponseData)
+//
+//             arrResponseData.prices = []
+//         }
+//         try{
+//             arrResponseData.prices.push(element)
+//         }catch (e) {
+//             console.log("Ошибка ", element)
+//         }
+//     }
+//
+//     if(countRequest === "single") response = await sendRequestPost(url, arrResponseData, Object.keys(bodyRequest)[0] )
+//
+//     Object.keys(bodyRequest).forEach(item => {
+//         payload.push(bodyRequest[item])
+//     })
+//
+//
+//     if (response.data.result[0].updated) {
+//         dispatch({
+//             type: 'SEND_PRICE',
+//             payload: payload[0]
+//         })
+//         console.log("Цена обновилась!")
+//     }
+//     if(countRequest === "single") dispatch(endLoading())
+//     if (!response.data.result[0].updated) {console.log("Что то произошло не так!")}
+//
+// }
 
 export const openTables = () => ({
     type: 'OPEN_TABLES'
@@ -252,14 +206,28 @@ export const getAttrPrice = (nameModels) =>  async (dispatch) => {
     })
 }
 
+export const chgAttrPrice = (cabinet,model, value, nameAttr) =>  ({
+    type: 'CHANGE_ATTR_PRICE',
+    payload: {cabinet, model, value, nameAttr}
+})
+
 export const setNewPrice = () => ({
     type: 'SET_NEW_PRICE'
 })
 
-export const getListModel = name =>  ({
-    type: 'GET_LIST_MODEL',
-    payload: name
-})
+export const getListModel = (data) =>  async (dispatch) => {
+    dispatch(setLoading())
+    const url = "/api/product/get_listModels"
+    const name = data.match(/^[^:]*/gi)[0]
+    const cabinet = data.match(/[^:]*$/gi)[0]
+    const objReq = {cabinet,name}
+    const dataPrices = await sendRequestPost(url, objReq)
+
+    dispatch({
+        type: 'GET_LIST_MODEL',
+        payload: dataPrices.data.docs
+    })
+}
 
 export const getProduct = id =>  ({
     type: 'GET_PRODUCT',
