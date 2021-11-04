@@ -13,7 +13,7 @@ const TabContent = ({ title, cabinetInfo, cabinet }) => {
     const [loadingField, setLoadingField] = useState(false)
     const productTree = useSelector(({products}) => products.productTree)
     const titleClear = title.replace("_", " ")
-    const overpriceDef = 50
+    const overpriceDef = 100
     const packageDef = 20
     const {error, clearError} = useHttp()
     const message = useMessage()
@@ -25,13 +25,31 @@ const TabContent = ({ title, cabinetInfo, cabinet }) => {
 
     const attrPrice = useSelector(({products}) => products.attrPrice);
 
-    const crtServReq =  async (keyValue, value, name) => {
+    const crtServReq =  async (keyValue, value, name, cabinet) => {
+
+        setLoadingField(true)
+
+        const nameListModel = name.replaceAll(/ /gi, "_")
+        const cabinetListModel = cabinet.replaceAll(/ /gi, "_")
+
+        const responseModel = await sendRequestPost(
+            `${domain}/api/product/get_listModels`,
+            {name:nameListModel, cabinet: cabinetListModel})
+
         const objReq = {
             [keyValue]: value,
             name,
-            cabinet : titleClear === "All Models" ? "" : titleClear
+            cabinet,
+            offer_id: []
         }
-        setLoadingField(true)
+
+
+
+        responseModel.data.docs.forEach(item => {
+            objReq.offer_id.push(item.offer_id)
+        })
+
+
         await sendRequestPost(`${domain}/api/price/send_attr_price`,  objReq)
         setLoadingField(false)
         message("Изменения вступят в силу в течение часа")
@@ -73,7 +91,7 @@ const TabContent = ({ title, cabinetInfo, cabinet }) => {
                         </tr>
 
                             {Object.keys(productTree[cabinet]).map((item,index) =>
-                                <tr key={`model_${index}`}>
+                                <tr key={`model_${cabinet}_${index}`}>
                                     <td>{item.replace(/_/g, " ")}</td>
                                     <td>{`${cabinetInfo[item]["averPrice"]} р.`}</td>
                                     <TabInput priceValue = {getAttr(cabinet, item)["overprice"]}
@@ -104,7 +122,7 @@ const TabContent = ({ title, cabinetInfo, cabinet }) => {
                     </React.Fragment>
                 ) :
                 Object.keys(cabinetInfo).map((item,index) =>
-                <tr key={`model_${index}`}>
+                <tr key={`model_${titleClear}_${index}`}>
                     <td>{item.replace(/_/g, " ")}</td>
                     <td>{`${cabinetInfo[item]["averPrice"]} р.`}</td>
                     <TabInput priceValue = {getAttr(titleClear, item)["overprice"]}
@@ -124,7 +142,7 @@ const TabContent = ({ title, cabinetInfo, cabinet }) => {
 
                     <td>{`${cabinetInfo[item]["minPrice"]} р.`}</td>
                     <td>
-                        <Link to={ `/list/` + item + "?" + title} >
+                        <Link to={ `/list/` + item + ":" + cabinet} >
                             <i  className="material-icons">chevron_right</i>
                         </Link>
                     </td>

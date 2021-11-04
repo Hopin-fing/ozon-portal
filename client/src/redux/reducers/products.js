@@ -150,7 +150,6 @@ const productsReducer = (state = initialState, action) => {
         }
 
         case 'GET_LIST_MODEL': {
-            console.log("listModel:",  action.payload)
 
             return {
                 ...state,

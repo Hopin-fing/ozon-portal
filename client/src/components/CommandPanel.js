@@ -22,14 +22,17 @@ const CommandPanel = () => {
     const getAttrPriceFunc = async () => {
         const cabinets = Object.keys(productTree)
         let bodyReq = {}
+
         cabinets.forEach(cabinet => {
             const clrCabinet = cabinet.replaceAll(/_/g, " ")
-            const clrNamesModel= []
-            Object.keys(productTree[cabinet]).forEach(nameModels => {
-                clrNamesModel.push(nameModels.replaceAll(/_/g, " "))
+            const clrNamesModel= {}
+            Object.keys(productTree[cabinet]).forEach(nameModel => {
+                const clrNameModel = nameModel.replaceAll(/_/g, " ")
+                clrNamesModel[clrNameModel] = productTree[cabinet][nameModel].exampleId
             })
             bodyReq[clrCabinet] = clrNamesModel
         })
+
         dispatch(getAttrPrice(bodyReq))
     }
 

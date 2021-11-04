@@ -130,7 +130,6 @@ export const getHistory = products => async (dispatch) => {
         name = products.name,
         cabinet = products.cabinet,
         objReq = {art, name, cabinet}
-        console.log("objReq", objReq)
 
         const response = await sendRequestPost(url, objReq)
 
@@ -147,46 +146,6 @@ export const getPrices = () => ({
     type: 'GET_PRICES'
 
 })
-
-// export const sendPrice = (bodyRequest, countRequest = "single") =>  async (dispatch) =>{
-//     dispatch(setLoading())
-//     const url = "https://api-seller.ozon.ru/v1/product/import/prices"
-//     const arrResponseData = {"prices" : []}
-//     let payload = []
-//     let response
-//
-//     console.log("price bodyRequest", bodyRequest)
-//     for(const [index, element] of Object.entries(bodyRequest)) {
-//         if(index % 999 === 0 && index !== 0) {
-//             await sendRequestPost(url, arrResponseData)
-//
-//             arrResponseData.prices = []
-//         }
-//         try{
-//             arrResponseData.prices.push(element)
-//         }catch (e) {
-//             console.log("Ошибка ", element)
-//         }
-//     }
-//
-//     if(countRequest === "single") response = await sendRequestPost(url, arrResponseData, Object.keys(bodyRequest)[0] )
-//
-//     Object.keys(bodyRequest).forEach(item => {
-//         payload.push(bodyRequest[item])
-//     })
-//
-//
-//     if (response.data.result[0].updated) {
-//         dispatch({
-//             type: 'SEND_PRICE',
-//             payload: payload[0]
-//         })
-//         console.log("Цена обновилась!")
-//     }
-//     if(countRequest === "single") dispatch(endLoading())
-//     if (!response.data.result[0].updated) {console.log("Что то произошло не так!")}
-//
-// }
 
 export const openTables = () => ({
     type: 'OPEN_TABLES'

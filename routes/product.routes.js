@@ -1,13 +1,10 @@
-const fs = require('fs');
 const {Router} = require('express')
+const ProductTree = require('../models/ProductTree')
 const {ozonReq} = require('../serverMethods/httpRequest/ozonReq')
 const {getStockFilter} = require("../serverMethods/getDB");
 const {getStock} = require("../serverMethods/getDB/getStock");
 const {modelsInfo} = require("../serverMethods/data/mainInfo")
-const {writeFile} = require("../serverMethods/cronTask/writeFile")
 const {crtProdTree} = require("../serverMethods/createProdTree/createProdTree")
-const path = require("path")
-const filePath = path.resolve('serverMethods/data/localStorage/index.json')
 const config = require('config')
 const router = Router()
 
@@ -23,21 +20,22 @@ router.get('/write_genStorage', async (req, res) => {
                 product_id: [],
                 sku: []
             }}
-        let docs = {}
+        let storage = {}
         for (let i=0; cabinets.length > i; i++ ) {
             backendData[cabinets[i]] = await getStockFilter(cabinets[i], allItems)
         }
 
-        const filterResponseData = (nameCabinet, elements) => {
+        const filterResponseData = (nameCabinet, elements, buyingPrice) => {
             const resultElements = []
-            elements.forEach(element => {
+            elements.forEach((element,index) => {
                 resultElements.push({
                     id: element["id"],
                     name: element["name"],
                     offer_id: element["offer_id"],
                     barcode: element["barcode"],
                     price: element["price"],
-                    stocks: element["stocks"]
+                    stocks: element["stocks"],
+                    buyingPrice: buyingPrice[index]
                 })
             })
             Object.keys(ozonData).includes(nameCabinet)
@@ -62,19 +60,22 @@ router.get('/write_genStorage', async (req, res) => {
 
         const filterCabinet = async cabinet => {
             bodyRequestInfoList.body.offer_id = []
+            bodyRequestInfoList.body.buyingPrice = []
             for(let [index, element] of Object.entries(backendData[cabinet])) {
                 index = Number(index)
                 if(index % 999 === 0 && index !== 0) {
 
                     bodyRequestInfoList = addHeader(bodyRequestInfoList, cabinet)
                     const response = await ozonReq(url, bodyRequestInfoList, cabinet)
+                    filterResponseData(cabinet, response.result.items, bodyRequestInfoList.body.buyingPrice)
                     bodyRequestInfoList.body.offer_id = []
-                    filterResponseData(cabinet, response.result.items)
+                    bodyRequestInfoList.body.buyingPrice = []
                 }
 
                 try {
-                    bodyRequestInfoList.body.offer_id.push(element.art.toString())
 
+                    bodyRequestInfoList.body.offer_id.push(element.art.toString())
+                    bodyRequestInfoList.body.buyingPrice.push(element.BuyingPrice.toString())
                 }catch (e) {
                     console.log("error")
                 }
@@ -82,8 +83,7 @@ router.get('/write_genStorage', async (req, res) => {
             }
             bodyRequestInfoList = addHeader(bodyRequestInfoList, cabinet)
             const response = await ozonReq(url, bodyRequestInfoList, cabinet)
-
-            filterResponseData(cabinet, response.result.items)
+            filterResponseData(cabinet, response.result.items, bodyRequestInfoList.body.buyingPrice)
         }
 
 
@@ -91,10 +91,13 @@ router.get('/write_genStorage', async (req, res) => {
             await filterCabinet(Object.keys(backendData)[i])
             ozonData[Object.keys(backendData)[i]] = ozonData[Object.keys(backendData)[i]].flat()
         }
-        console.log("start")
-        docs = crtProdTree(ozonData, backendData)
+        storage = crtProdTree(ozonData, backendData)
+        await ProductTree.deleteMany()
+        for(let i = 0; cabinets.length > i; i++) {
+            const newStorage = await new ProductTree( {data: storage[cabinets[i]], cabinet:cabinets[i] } )
+            newStorage.save()
+        }
 
-        await writeFile(docs,filePath)
         return res.status(200).json({ "status": ' ok'})
     }catch (e) {
         console.log("error", e.message)
@@ -108,9 +111,7 @@ router.get('/write_genStorage', async (req, res) => {
 
 router.get('/get_productTree', async (req, res) => {
     try {
-        const request = await fs.readFileSync(filePath, 'utf8'),
-            data = await JSON.parse(request),
-            cabinets = Object.keys(data),
+        const cabinets = Object.keys(modelsInfo),
             docs = {}
 
         const sumPriceModels = arrModels => {
@@ -132,17 +133,20 @@ router.get('/get_productTree', async (req, res) => {
         }
 
         for(let i = 0; cabinets.length > i; i++  ) {
-
-            docs[[cabinets[i]]] = {}
-            Object.keys(data[[cabinets[i]]]).forEach(nameModel => {
+            const data = await ProductTree.findOne({cabinet: cabinets[i]}, async (err, product) => {
+                return product["data"]
+            })
+            docs[cabinets[i]] = {}
+            Object.keys(data["data"]).forEach(nameModel => {
                 const arrPrices = []
-                data[[cabinets[i]]][nameModel].forEach( item => {
+                data["data"][nameModel].forEach( item => {
                     arrPrices.push(item["price"])
                 })
                 const averPrice = averagePrice(arrPrices)
                 const minPrice = doMinPrice(arrPrices)
-                // console.log("averPrice", averPrice)
-                docs[cabinets[i]][nameModel] = {averPrice, minPrice}
+                const exampleId = data["data"][nameModel][0].offer_id
+
+                docs[cabinets[i]][nameModel] = {averPrice, minPrice, exampleId}
             })
         }
         return res.status(200).json({docs})
@@ -155,11 +159,10 @@ router.get('/get_productTree', async (req, res) => {
 
 router.post('/get_listModels', async (req, res) => {
     try {
-        const request = await fs.readFileSync(filePath, 'utf8'),
-            data = await JSON.parse(request),
-            {cabinet, name} = req.body
-
-        const docs = data?.[cabinet]?.[name]
+        const {cabinet, name} = req.body,
+            data = await ProductTree.findOne({cabinet}, async (err, product) => {
+            return product["data"]})
+        const docs = data["data"]?.[name]
         return res.status(200).json({docs})
     } catch (err) {
         console.log("err", err.message)

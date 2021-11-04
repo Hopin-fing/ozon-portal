@@ -29,6 +29,7 @@ const TabContent = ({ urlData }) => {
                                         <th>Штрихкод</th>
                                         <th>Цена</th>
                                         <th>Кол-во на складе </th>
+                                        <th>Закупочная цена </th>
                                         <th> </th>
 
                                     </tr>
@@ -44,6 +45,7 @@ const TabContent = ({ urlData }) => {
                                                   barcode={item.barcode}
                                                   price={item.price}
                                                   balance={item.balance}
+                                                  buyingPrice={item.buyingPrice}
                                                   url ={urlData}/>
                                     )}
                                     </tbody>

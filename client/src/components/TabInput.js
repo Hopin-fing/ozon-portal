@@ -14,10 +14,10 @@ const TabInput = ({priceValue, keyValue, name, funcReq, loading, cabinet }) => {
 
         if(event.key !== 'Enter') return
 
-        if(value.toString().trim()) {
+        if(value.toString().trim() && Number(value) > 0) {
             name = name.replace(/_/g, " ")
             cabinet = cabinet.replace(/_/g, " ")
-            await funcReq(keyValue, value, name)
+            await funcReq(keyValue, value, name, cabinet)
             const valueNumb = parseInt(value, 10)
             dispatch(chgAttrPrice(cabinet,name,valueNumb,keyValue))
             setInput(false)

@@ -25,21 +25,23 @@ router.get('/get_sourcePrice', async (req, res) => {
 
 router.post('/get_attr_price', async (req, res) => {
     const docs = {}
+    delete req.body["headers"]
     try{
-
-        for(let key in req.body) {
-            const reCabinet = new RegExp(key, "gi")
-            docs[key]={}
-            for(let i = 0; req.body[key].length > i; i++) {
-                const nameModel = req.body[key][i]
-                const reName = new RegExp(nameModel, "gi")
-                await Price.findOne({name: reName, cabinet:reCabinet }, async (err, product) => {
-                    docs[key][[nameModel]] = {
+        for(let cabinet in req.body) {
+            const reCabinet = new RegExp(cabinet, "gi")
+            docs[cabinet]={}
+            for (let model in req.body[cabinet]) {
+                const nameModel = req.body[cabinet][model]
+                const art = nameModel
+                // const reName = new RegExp(nameModel, "gi")
+                await Price.findOne({art, cabinet:reCabinet }, async (err, product) => {
+                    docs[cabinet][[model]] = {
                         "overprice": product?.["overprice"] || null,
                         "package" : product?.["package"] || null
                     }
                 })
             }
+
         }
 
         return res.status(200).json({docs} )
@@ -51,22 +53,30 @@ router.post('/get_attr_price', async (req, res) => {
 
 router.post('/send_attr_price', async (req, res) => {
     try{
-        const {package, name, overprice, cabinet} = req.body
-        const reName = new RegExp(name, "gi")
+        const {package, name, overprice, cabinet, offer_id} = req.body
+
+        let counter = 0
         const reCabinet = new RegExp(cabinet, "gi")
-        await Price.find({"name": reName, "cabinet": reCabinet}, async (err, prices) => {
-            for(let i = 0; prices.length > i; i++) {
+        const changeDB = async prices => {
+
                 if(package) {
-                    prices[i].package = package
-                    await prices[i].save()
+                    prices.package = package
+                    await prices.save()
                 }
                 if(overprice) {
-                    prices[i].overprice = overprice
-                    await prices[i].save()
+                    prices.overprice = overprice
+                    await prices.save()
                 }
-            }
+            counter ++
+        }
 
-        })
+        for (let i = 0; offer_id.length > i; i++ ) {
+            const reId = new RegExp(offer_id[i], "gi")
+            await Price.findOne({"art": reId, "cabinet": reCabinet}, async (err, prices) => {
+                if(prices) await changeDB(prices)
+            })
+        }
+
         return res.status(200).json({"status" : "ok" })
     }catch (e) {
         res.status(500).json({ "status": ' error'})
