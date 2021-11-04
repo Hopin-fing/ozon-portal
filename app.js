@@ -43,11 +43,10 @@ async function start() {
         })
 
         app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
-
-        cron.schedule('0 0 */1 * *', async () => {
-
-            await sendRequestGet(`http://localhost:5000/api/product/write_genStorage`)
-        });
+        // cron.schedule('0 0 */1 * *', async () => {
+        //
+        //     await sendRequestGet(`http://localhost:5000/api/product/write_genStorage`)
+        // });
 
 
     } catch (e) {
