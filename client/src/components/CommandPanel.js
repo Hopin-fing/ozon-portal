@@ -44,7 +44,7 @@ const CommandPanel = () => {
             // const dataProdTree = await request(`${domain}/api/product/write_genStorage`)
             await dispatch(getProductTree(dataProdTree.docs))
         } catch (e) {
-            console.log("Ошибка :", e)
+            console.log("Ошибка :", e.message)
         }
 
     }
