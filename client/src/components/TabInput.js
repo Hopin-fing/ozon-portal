@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import moment from "moment";
+
 import {chgAttrPrice} from "../redux/actions/products";
 import {useDispatch} from "react-redux";
 

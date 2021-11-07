@@ -17,7 +17,6 @@ router.get('/get_chatList', async (req, res) => {
     try{
         const chatData = await Chat.find();
         await Chat.deleteMany()
-        console.log("history test")
         const docs = await getChatList(chatData)
         for(let i = 0; docs.length > i; i++) {
             const {id, last_message_id, isRead, cabinet} = docs[i]

@@ -23,6 +23,7 @@ app.use('/api/ozon', require('./routes/ozon.routes'))
 app.use('/api/product', require('./routes/product.routes'))
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/chat', require('./routes/chat.routes'))
+app.use('/api/warehouse', require('./routes/warehouse.routes'))
 
 const PORT = config.get('port') || 5000
 

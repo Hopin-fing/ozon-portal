@@ -3,6 +3,7 @@ import CommandPanel from "../components/CommandPanel";
 import Tabs from "../components/Tabs";
 import {useSelector} from "react-redux";
 import {Loader} from "../components/Loader";
+import NavPanel from "../components/NavPanel";
 
 const Home = () => {
     const loading = useSelector(({products}) => products.loading);
@@ -12,7 +13,7 @@ const Home = () => {
         <div>
             <div className="row">
                 <CommandPanel/>
-                {/*<ChatPanel/>*/}
+                <NavPanel/>
             </div>
             {loading
                 ? <div className="row">

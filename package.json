@@ -15,6 +15,7 @@
     "getneocosmo": "node app.js && cd serverMethods/createSrcCard node index"
   },
   "dependencies": {
+    "@wojtekmaj/react-daterange-picker": "^3.3.2",
     "axios": "^0.21.1",
     "axios-retry": "^3.1.9",
     "bcryptjs": "^2.4.3",
