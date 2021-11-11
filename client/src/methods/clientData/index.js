@@ -21,7 +21,7 @@ const REACT_APP_API_KEY_CENTRALNIY_SKLAD_LENSES = process.env.REACT_APP_API_KEY_
 const REACT_APP_CLIENT_ID_LENSES_MSK = process.env.REACT_APP_CLIENT_ID_LENSES_MSK;
 const REACT_APP_API_KEY_LENSES_MSK = process.env.REACT_APP_API_KEY_LENSES_MSK;
 
-export const domain =  process.env.REACT_APP_DEV_DOMAIN;
+export const domain =  process.env.REACT_APP_DOMAIN;
 
 
 const cabinetsInfo = {
