@@ -44,15 +44,16 @@ const FormStockStop = () => {
     const handleSubmit = async event => {
         event.preventDefault();
         const dataSet = moment().format("DD.MM.YYYY")
-        const firstData = data[0].toLocaleDateString()
-        const secondData = data[1].toLocaleDateString()
-        const objResult = {data: [firstData, secondData], timeClose, timeOpen, wrhInfo, dataSet, description}
+        const firstData = data[0].toISOString().slice(0, 10)
+        const secondData = data[1].toISOString().slice(0, 10)
+        const objResult = {data: [firstData, secondData], timeClose, timeOpen, wrhInfo, cabinets, dataSet, description}
         const clrHourClose =  Number(timeClose?.replace(/:.*$/, ""))
         const clrMinuteClose =  Number(timeClose?.replace(/^.*:/, ""))
         const clrHourOpen =  Number(timeOpen?.replace(/:.*$/, ""))
         const clrMinuteOpen =  Number(timeOpen?.replace(/^.*:/, ""))
-        let isCbChanged, isTimeRight, isTaFull = description
-        for (let key in wrhInfo) if(wrhInfo[key]) isCbChanged = true
+        let isCbWhrChanged, isCbCbtChanged, isTimeRight, isTaFull = description
+        for (let key in wrhInfo) if(wrhInfo[key]) isCbWhrChanged = true
+        for (let key in cabinets) if(cabinets[key]) isCbCbtChanged = true
         if(firstData === secondData
             && (clrHourClose < clrHourOpen
                 || (clrHourClose === clrHourOpen && clrMinuteClose < clrMinuteOpen)
@@ -61,21 +62,21 @@ const FormStockStop = () => {
         if(firstData !== secondData) isTimeRight = true
 
 
-        if(isCbChanged && isTaFull && isTimeRight) {
+        if(isCbWhrChanged && isTaFull && isTimeRight && isCbCbtChanged) {
             setLoading(true)
             try{
                 await request(`${domain}/api/warehouse/ban_warehouse`, 'POST', objResult)
+                message("Операция прошла успешно!")
             }catch (e) {
-                alert(e.message)
                 message(`Ошибка: ${e.message}` )
 
             }
-            message("Операция прошла успешно!")
+            setLoading(false)
         }
-        if(!isCbChanged) message("Выбирите склады")
+        if(!isCbWhrChanged) message("Выбирите склады")
         if(!isTaFull) message("Введите причину блокировки")
-        if(!isTimeRight)
-            message("Некорректно ввыдена дата и время блокировки")
+        if(!isTimeRight) message("Некорректно ввыдена дата и время блокировки")
+        if(!isCbCbtChanged) message("Выбирите кабинеты")
 
     }
 

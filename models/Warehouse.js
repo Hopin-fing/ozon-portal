@@ -4,7 +4,7 @@ const Warehouse = new Schema({
     timeClose: Object,
     timeOpen: Object,
     wrhInfo: Object,
-    cabinets: Array,
+    cabinets: Object,
     description: String,
     dataSet: String
 })
