@@ -25,7 +25,7 @@ app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/chat', require('./routes/chat.routes'))
 app.use('/api/warehouse', require('./routes/warehouse.routes'))
 
-const PORT = config.get('port') || 3000
+const PORT = config.get('port') || 5000
 
 if(process.env.NODE_ENV === "production") {
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
